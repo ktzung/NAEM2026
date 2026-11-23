@@ -496,6 +496,142 @@ main { min-width: 0; padding: 38px clamp(20px, 5vw, 64px) 90px; }
   #printSurface .sheet { border: 1px solid #999; margin-bottom: 10mm; }
   #printSurface .sheet-grid { grid-template-columns: 1fr 1fr; }
 }
+
+/* ---------- Giảng viên: lịch, slide, đề, mẫu biểu ---------- */
+.sched-note { max-width: 74ch; color: var(--muted); font-size: 15px; line-height: 1.6; }
+.print-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 22px; }
+.sched-day { margin: 26px 0 10px; }
+.sched-day-head h2 { margin: 0; font-size: 24px; }
+.sched-day-head p { margin: 2px 0 14px; color: var(--muted); }
+.sched-session { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; margin-bottom: 14px; break-inside: avoid; }
+.sched-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.sched-head h3 { margin: 4px 0 0; font-size: 18px; }
+.sched-head .kicker { font-size: 11px; letter-spacing: 1.1px; text-transform: uppercase; color: var(--amber); font-weight: 800; }
+.sched-head .btn { flex: none; white-space: nowrap; }
+.sched-goal { margin: 8px 0 10px; font-size: 14.5px; color: #3b4a48; }
+.sched-blocks { display: grid; gap: 6px; }
+.sched-block { display: grid; grid-template-columns: 118px 1fr; gap: 10px; padding: 7px 10px; background: #faf7f1; border-radius: 8px; font-size: 14px; }
+.sched-block b { font-weight: 600; color: #263b39; }
+.sched-block em { display: block; font-style: normal; color: var(--muted); font-size: 12.5px; margin-top: 2px; }
+.sched-time { font-weight: 700; color: var(--teal); font-size: 13px; }
+.sched-links { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 10px; font-size: 12.5px; }
+.sched-links > span { color: var(--muted); font-weight: 700; text-transform: uppercase; font-size: 10.5px; letter-spacing: .8px; }
+.chip-link { display: inline-block; padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; background: #fff; font-size: 12.5px; }
+
+.trainer-strip { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin: 14px 0 26px; }
+.trainer-card { display: flex; flex-direction: column; gap: 6px; padding: 16px; background: #fff; border: 1px solid var(--line); border-radius: 12px; }
+.trainer-card:hover { border-color: var(--teal); }
+.trainer-card .kicker { font-size: 10px; letter-spacing: 1.1px; color: var(--amber); font-weight: 800; }
+.trainer-card b { font-size: 15px; color: var(--ink); }
+.trainer-card span:last-child { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+
+.deck-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 16px; }
+.deck-card { display: block; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+.deck-card:hover { border-color: var(--teal); }
+.deck-card .kicker { font-size: 10.5px; letter-spacing: 1.1px; text-transform: uppercase; color: var(--amber); font-weight: 800; }
+.deck-card h3 { margin: 6px 0 4px; font-size: 18px; }
+.deck-card p { margin: 0 0 8px; color: var(--muted); font-size: 14px; }
+.deck-card .meta { font-size: 12.5px; color: var(--teal); font-weight: 700; }
+
+/* Chế độ chiếu */
+body.deck-mode { background: #0c2124; }
+body.deck-mode .topbar, body.deck-mode .sidebar, body.deck-mode .scrim { display: none !important; }
+body.deck-mode .shell { display: block; }
+body.deck-mode main { padding: 0; min-height: 100vh; }
+.deck { min-height: 100vh; display: flex; flex-direction: column; padding: 18px clamp(16px, 4vw, 64px) 16px; background: radial-gradient(1100px 620px at 18% -10%, #16464c 0%, #0c2124 55%, #08181a 100%); color: #f7f3ea; }
+.deck-top { display: flex; justify-content: space-between; gap: 14px; align-items: center; font-size: 12.5px; color: #9db7b3; }
+.deck-count { font-variant-numeric: tabular-nums; font-weight: 700; color: #e8b15c; }
+.deck-stage { flex: 1; display: flex; align-items: center; padding: 18px 0; cursor: pointer; }
+.slide { width: 100%; max-width: 1060px; margin: 0 auto; }
+.slide-kicker { display: inline-block; color: #e8b15c; letter-spacing: 2px; font-weight: 800; font-size: 12.5px; text-transform: uppercase; }
+.slide h2 { font-size: clamp(28px, 4.2vw, 52px); line-height: 1.14; margin: 10px 0 20px; color: #fffdf7; }
+.slide ul { margin: 0; padding-left: 1.15em; display: grid; gap: 12px; }
+.slide li { font-size: clamp(16px, 1.65vw, 23px); line-height: 1.45; }
+.slide li::marker { color: #e8b15c; }
+.slide.cover h2 { font-size: clamp(34px, 5.2vw, 62px); }
+.deck-note { min-height: 22px; color: #a9bfbb; font-size: 13.5px; font-style: italic; padding: 6px 0 10px; }
+.deck-controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; border-top: 1px solid rgba(255,255,255,.14); padding-top: 12px; }
+.deck-hint { flex: 1; text-align: center; color: rgba(255,255,255,.5); font-size: 12.5px; min-width: 160px; }
+.deck .btn { background: rgba(255,255,255,.08); color: #fff; border: 1px solid rgba(255,255,255,.22); }
+.deck .btn:hover { background: rgba(255,255,255,.16); }
+.deck .btn:disabled { opacity: .35; }
+.deck .btn.primary { background: #e8b15c; border-color: #e8b15c; color: #1b2a28; }
+
+/* Đáp án */
+.ans-body { max-width: 78ch; }
+.ans-track-title { margin: 30px 0 10px; padding-bottom: 6px; border-bottom: 2px solid var(--line); font-size: 21px; }
+.ans-lesson { margin: 18px 0 6px; font-size: 16.5px; }
+.ans { padding: 8px 0 10px; border-bottom: 1px dashed #e8e0d2; }
+.ans p { margin: 0 0 4px; font-size: 14.5px; }
+.ans-correct { color: #0d7a5f; font-weight: 700; }
+.ans-explain { color: var(--muted); font-size: 13.5px !important; }
+.muted { color: var(--muted); font-weight: 400; font-size: 13px; }
+
+/* Đề kiểm tra */
+.test-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 14px 0 6px; }
+.test-bar label { font-size: 14px; font-weight: 600; display: flex; gap: 8px; align-items: center; }
+.test-bar select { font: inherit; padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+.saved-line { font-size: 13.5px; color: var(--teal); font-weight: 600; margin: 4px 0 10px; }
+.test-list { display: grid; gap: 12px; margin: 10px 0 18px; }
+.tq { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.tq-title { font-weight: 600; line-height: 1.5; }
+.tq-title span { color: var(--amber); font-weight: 800; margin-right: 4px; }
+.tq-opts { display: grid; gap: 8px; margin: 10px 0 4px; }
+.tq-opt { text-align: left; font: inherit; font-size: 14px; padding: 9px 12px; border: 1px solid var(--line); border-radius: 9px; background: #fbf9f4; cursor: pointer; }
+.tq-opt:hover:not(:disabled) { border-color: var(--teal); }
+.tq-opt.correct { border-color: #16a34a; background: #ecfdf3; }
+.tq-opt.wrong { border-color: #dc2626; background: #fef2f2; }
+.tq-explain { display: none; font-size: 13.5px; color: #3b4a48; padding-top: 8px; border-top: 1px dashed #e8e0d2; margin-top: 8px; }
+.tq.answered .tq-explain { display: block; }
+
+/* Mẫu biểu */
+.form-grid-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 8px; }
+.form-card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 8px; }
+.form-card .kicker { font-size: 10.5px; letter-spacing: 1.1px; text-transform: uppercase; color: var(--amber); font-weight: 800; }
+.form-card h3 { margin: 0; font-size: 17px; }
+.form-card p { margin: 0; color: var(--muted); font-size: 13.5px; flex: 1; }
+.form-card .btn { align-self: flex-start; }
+.sign-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; text-align: center; font-size: 13.5px; }
+.sign-row em { font-size: 11.5px; color: var(--muted); }
+.hotline-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 0; }
+.hotline-row div { border: 1px solid #c9bda8; border-radius: 10px; padding: 10px 12px; text-align: center; }
+.hotline-row b { display: block; font-size: 26px; color: var(--teal); }
+.hotline-row span { font-size: 12px; color: var(--muted); }
+.plain-check { list-style: none; padding-left: 0; margin: 4px 0 12px; }
+.plain-check li { font-size: 13.5px; padding: 3px 0; }
+.cert-body { border: 3px double #b98b3e; border-radius: 10px; padding: 18px 22px; }
+.cert .sign-row { margin-top: 22px; }
+
+/* In slide */
+@media print {
+  @page deckPage { size: A4 landscape; margin: 10mm; }
+  @page certPage { size: A4 landscape; margin: 10mm; }
+  .sheet.cert { page: certPage; }
+  .sheet.cert .cert-body { min-height: 150mm; display: flex; flex-direction: column; justify-content: center; }
+  body.printing-deck { background: #fff !important; }
+  body.printing-deck .topbar, body.printing-deck .sidebar, body.printing-deck .shell, body.printing-deck .scrim, body.printing-deck .skip { display: none !important; }
+  body.printing-deck #printSurface { display: block !important; color: #111; }
+  .print-slide, .print-slide h2, .print-slide li, .print-slide .ps-note { color: #111; }
+  .print-slide { page: deckPage; break-after: page; min-height: 168mm; }
+  .print-slide:last-child { break-after: auto; }
+  .ps-head { display: flex; justify-content: space-between; font-size: 9pt; color: #666; border-bottom: 1px solid #bbb; padding-bottom: 2mm; }
+  .print-slide h2 { font-size: 22pt; margin: 4mm 0 3mm; }
+  .print-slide ul { margin: 0; padding-left: 6mm; }
+  .print-slide li { font-size: 13.5pt; line-height: 1.45; margin-bottom: 2mm; }
+  .ps-note { font-size: 10pt; font-style: italic; color: #555; margin-top: 4mm; }
+  .print-actions, .deck-controls { display: none !important; }
+}
+@media (max-width: 980px) {
+  .trainer-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .deck-grid, .form-grid-cards { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .trainer-strip { grid-template-columns: 1fr; }
+  .sched-head { flex-direction: column; }
+  .sched-block { grid-template-columns: 1fr; gap: 2px; }
+  .deck-hint { display: none; }
+  .deck-controls .btn { flex: 1; white-space: nowrap; padding: 8px 8px; font-size: 13px; }
+}
 </style>
 </head>
 <body>
@@ -510,6 +646,7 @@ main { min-width: 0; padding: 38px clamp(20px, 5vw, 64px) 90px; }
     <span class="brand-text"><strong>Sổ tay số</strong><small>Giáo viên Nghệ An · 2026</small></span>
   </a>
   <nav class="top-actions" aria-label="Lối tắt">
+    <a class="top-link" href="#/lich">Giảng viên</a>
     <a class="top-link" href="#/cong-cu">Phòng thực hành</a>
     <a class="top-link" href="#/in">Bộ phiếu in</a>
     <button class="top-link ghost" id="printBtn" title="In trang đang xem">In trang</button>
@@ -546,6 +683,8 @@ main { min-width: 0; padding: 38px clamp(20px, 5vw, 64px) 90px; }
 <div id="printSurface" aria-hidden="true"></div>
 
 <script id="manifest" type="application/json">{"site":{"title":"Sổ tay số cho giáo viên Nghệ An","subtitle":"Bồi dưỡng chuyển đổi số, năng lực số và sư phạm số thích ứng — 2026","edition":"Bản thực hành rút gọn từ Chương trình bồi dưỡng 03 ngày và 04 bộ tài liệu NAEM 2026"},"tracks":[{"id":"chung","title":"Nền tảng chung","short":"Chung","desc":"Năm bài ngắn ai cũng cần: căn cứ pháp lý, bản đồ năng lực, an toàn số, AI có trách nhiệm và năm trụ cột.","lessons":[{"id":"c1-can-cu","file":"chung/01-can-cu-phap-ly.md","title":"Căn cứ pháp lý trong 10 phút","minutes":12,"summary":"Sáu văn bản quyết định điều bạn phải ghi trong kế hoạch dạy học, và việc cụ thể phải làm.","track":"chung","trackTitle":"Nền tảng chung"},{"id":"c2-ban-do","file":"chung/02-ban-do-nang-luc.md","title":"Bản đồ năng lực và cách ghi mã","minutes":15,"summary":"Sáu miền năng lực của giáo viên, mã TC1/TC2/NC1 của học sinh, bốn mạch AI, tám chủ đề an toàn mạng.","track":"chung","trackTitle":"Nền tảng chung"},{"id":"c3-an-toan","file":"chung/03-an-toan-so.md","title":"An toàn số: SIFT, 4 KHÔNG – 3 CÓ và 7 bước ứng phó","minutes":18,"summary":"Quy trình kiểm chứng tin, bộ quy tắc dán ở lớp và cách xử lý sự cố theo ba mức độ.","track":"chung","trackTitle":"Nền tảng chung"},{"id":"c4-ai","file":"chung/04-ai-co-trach-nhiem.md","title":"AI có trách nhiệm và prompt 4 thẻ","minutes":16,"summary":"Tương tác ba chiều GV – HS – AI, năm lỗi thường gặp và mẫu câu lệnh dùng được ngay.","track":"chung","trackTitle":"Nền tảng chung"},{"id":"c5-tru-cot","file":"chung/05-tru-cot-su-pham.md","title":"Năm trụ cột và tích hợp đúng địa chỉ","minutes":14,"summary":"Năm trụ cột chuyển đổi số, năm giải pháp, mô hình 4C và nguyên tắc không khiên cưỡng.","track":"chung","trackTitle":"Nền tảng chung"}]},{"id":"thcs-xh","title":"Khóa THCS · KHXH","short":"THCS KHXH","desc":"Dành cho giáo viên Ngữ văn, Lịch sử và Địa lí, GDCD, Hoạt động trải nghiệm ở cấp THCS.","lessons":[{"id":"tx1-dac-thu","file":"thcs-xh/01-dac-thu.md","title":"Đặc thù khối KHXH THCS và ma trận tích hợp","minutes":15,"summary":"Học sinh 11–14 tuổi, các môn Ngữ văn, Lịch sử và Địa lí, GDCD, HĐTN; bảng chọn mã TC1/TC2 và chủ đề ATM cho từng bài.","track":"thcs-xh","trackTitle":"Khóa THCS · KHXH"},{"id":"tx2-khbd","file":"thcs-xh/02-khbd-4c.md","title":"Thực hành: Kế hoạch bài dạy 4C và chín hoạt động","minutes":25,"summary":"Bài mẫu Ngữ văn 8 kiểm chứng tin tức, đủ bốn hoạt động, rubric ba mức và phương án không thiết bị.","track":"thcs-xh","trackTitle":"Khóa THCS · KHXH"},{"id":"tx3-ke-hoach","file":"thcs-xh/03-ke-hoach.md","title":"Kế hoạch 4 tuần của tổ KHXH","minutes":15,"summary":"Năm bước lập kế hoạch, PDCA bốn tuần, phân công RACI và năm chỉ số tự đánh giá.","track":"thcs-xh","trackTitle":"Khóa THCS · KHXH"}]},{"id":"thcs-tn","title":"Khóa THCS · KHTN","short":"THCS KHTN","desc":"Dành cho giáo viên Toán, Khoa học tự nhiên, Tin học, Công nghệ và Hoạt động trải nghiệm cấp THCS.","lessons":[{"id":"tn1-dac-thu","file":"thcs-tn/01-dac-thu.md","title":"Đặc thù khối KHTN THCS và ma trận tích hợp","minutes":15,"summary":"Dạy khái niệm trừu tượng bằng mô phỏng, thí nghiệm ảo; mã năng lực và chủ đề an toàn mạng theo môn.","track":"thcs-tn","trackTitle":"Khóa THCS · KHTN"},{"id":"tn2-khbd","file":"thcs-tn/02-khbd-4c.md","title":"Thực hành: Kế hoạch bài dạy 4C với mô phỏng","minutes":25,"summary":"Bài mẫu Toán 8 về dữ liệu và biểu đồ, dùng bảng tính, GeoGebra, phiếu in dự phòng.","track":"thcs-tn","trackTitle":"Khóa THCS · KHTN"},{"id":"tn3-ke-hoach","file":"thcs-tn/03-ke-hoach.md","title":"Kế hoạch 4 tuần của tổ Toán – KHTN","minutes":15,"summary":"Lộ trình từ một tiết dạy đến kho học liệu dùng chung, kèm chỉ số và minh chứng.","track":"thcs-tn","trackTitle":"Khóa THCS · KHTN"}]},{"id":"thpt-xh","title":"Khóa THPT · KHXH","short":"THPT KHXH","desc":"Dành cho giáo viên Ngữ văn, Lịch sử, Địa lí, Giáo dục kinh tế và pháp luật, Hoạt động trải nghiệm – hướng nghiệp.","lessons":[{"id":"px1-dac-thu","file":"thpt-xh/01-dac-thu.md","title":"Đặc thù khối KHXH THPT và ma trận NC1","minutes":15,"summary":"Học sinh lớp 10–12 tự chủ hơn, mã NC1, dấu vết số, tin giả lịch sử và lừa đảo tuyển dụng.","track":"thpt-xh","trackTitle":"Khóa THPT · KHXH"},{"id":"px2-khbd","file":"thpt-xh/02-khbd-4c.md","title":"Thực hành: Kế hoạch bài dạy 4C và sản phẩm số","minutes":25,"summary":"Bài mẫu Lịch sử 11 với NotebookLM, ba nguồn đối chiếu và rubric đánh giá lập luận.","track":"thpt-xh","trackTitle":"Khóa THPT · KHXH"},{"id":"px3-ke-hoach","file":"thpt-xh/03-ke-hoach.md","title":"Kế hoạch 4 tuần của tổ KHXH THPT","minutes":15,"summary":"Từ tiết dạy mẫu đến câu lạc bộ học thuật số, kèm phân công và chỉ số.","track":"thpt-xh","trackTitle":"Khóa THPT · KHXH"}]},{"id":"thpt-tn","title":"Khóa THPT · KHTN","short":"THPT KHTN","desc":"Dành cho giáo viên Toán, Vật lí, Hóa học, Sinh học, Tin học và Công nghệ cấp THPT.","lessons":[{"id":"pn1-dac-thu","file":"thpt-tn/01-dac-thu.md","title":"Đặc thù khối KHTN THPT và ma trận NC1","minutes":15,"summary":"Mô phỏng, thí nghiệm ảo, dữ liệu lớn và giới hạn của AI trong các môn khoa học.","track":"thpt-tn","trackTitle":"Khóa THPT · KHTN"},{"id":"pn2-khbd","file":"thpt-tn/02-khbd-4c.md","title":"Thực hành: Kế hoạch bài dạy 4C với PhET","minutes":25,"summary":"Bài mẫu Vật lí 11 về dao động, kèm nhiệm vụ phân hóa và rubric năng lực số.","track":"thpt-tn","trackTitle":"Khóa THPT · KHTN"},{"id":"pn3-ke-hoach","file":"thpt-tn/03-ke-hoach.md","title":"Kế hoạch 4 tuần của tổ Toán – KHTN THPT","minutes":15,"summary":"Chuẩn hóa kho học liệu số, câu lạc bộ STEM và bộ chỉ số đo tiến bộ.","track":"thpt-tn","trackTitle":"Khóa THPT · KHTN"}]}],"tools":[{"id":"self","title":"Tự xếp nhóm A/B/C","desc":"12 câu hỏi ngắn, gợi ý lộ trình học theo nhóm năng lực."},{"id":"sift","title":"Mô phỏng SIFT","desc":"Tập kiểm chứng một tin lan truyền trong nhóm lớp qua bốn bước."},{"id":"atm","title":"Ứng phó sự cố an toàn mạng","desc":"Sắp xếp 7 bước xử lý và phân loại mức độ sự cố."},{"id":"prompt","title":"Tạo prompt 4 thẻ","desc":"Điền bốn thẻ Ngữ cảnh – Dữ liệu – Hướng dẫn – Kết quả, xuất câu lệnh an toàn."},{"id":"khbd","title":"Thiết kế kế hoạch bài dạy 4C","desc":"Khung giáo án 45 phút, gắn mã năng lực và chủ đề an toàn mạng."},{"id":"plan","title":"Đánh giá và kế hoạch 4 tuần","desc":"Rubric ba mức, bảng PDCA và phân công RACI, in được."}]}</script>
+<script id="trainerData" type="application/json">{"schedule":{"title":"Lịch tập huấn 03 ngày · 06 buổi","note":"Thời gian là gợi ý để giảng viên điều chỉnh theo thực tế địa phương. Mỗi buổi đều có sản phẩm nộp; buổi 4 làm song song theo bốn khóa THCS/THPT × KHXH/KHTN.","days":[{"title":"Ngày 1","subtitle":"Nền tảng chung: căn cứ, bản đồ năng lực, an toàn số, AI","sessions":[{"id":"b1","label":"Buổi 1","when":"Ngày 1 · Sáng","length":"120 phút","title":"Căn cứ pháp lý và bản đồ năng lực","goal":"Mỗi giáo viên nêu được sáu văn bản và việc phải làm; đọc đúng một mã TC1/TC2/NC1; ghi được một mã năng lực và một chủ đề ATM cho bài sắp dạy.","blocks":[{"t":"08:00 – 08:20","a":"Khai mạc, mục tiêu 3 ngày; tự xếp nhóm A/B/C bằng công cụ 12 câu","out":"Nhóm tham khảo của từng học viên"},{"t":"08:20 – 08:50","a":"Ba câu hỏi tình huống; sáu văn bản – sáu việc phải làm","out":"Ghi chú sáu số hiệu văn bản"},{"t":"08:50 – 09:20","a":"Bốn tấm bản đồ; đọc mã 1.2.TC2a; phân biệt TC1 – TC2 – NC1","out":"Đọc đúng hai mã bất kỳ"},{"t":"09:20 – 09:45","a":"Thực hành: phiếu mã hóa một bài thật của mình","out":"1 mã năng lực + 1 ATM + phương án không thiết bị"},{"t":"09:45 – 10:00","a":"Chữa nhanh ba phiếu; chốt và giao việc mang sang buổi 2","out":"Bài tập cá nhân"}],"lessons":["c1-can-cu","c2-ban-do"],"tools":["self"],"deck":"b1"},{"id":"b2","label":"Buổi 2","when":"Ngày 1 · Chiều","length":"120 phút","title":"An toàn số và AI có trách nhiệm","goal":"Xử lý được một sự cố theo bảy bước và phân đúng ba mức; viết được prompt bốn thẻ không chứa dữ liệu định danh học sinh.","blocks":[{"t":"13:30 – 13:50","a":"Khởi động bằng ba tình huống thật; SIFT nhanh","out":"Bốn bước SIFT"},{"t":"13:50 – 14:20","a":"SIFT + 4 KHÔNG – 3 CÓ; thực hành mô phỏng kiểm chứng một tin","out":"Kết luận tin đúng/sai có căn cứ"},{"t":"14:20 – 14:50","a":"Bảy bước ứng phó, ba mức sự cố; điền thẻ 7 bước","out":"Thẻ 7 bước để dán tổ chuyên môn"},{"t":"14:50 – 15:20","a":"AI có trách nhiệm: năm lỗi thường gặp, dữ liệu cấm, minh bạch khi dùng AI","out":"Danh sách dữ liệu không đưa vào AI"},{"t":"15:20 – 15:50","a":"Prompt bốn thẻ: viết và thử trên công cụ; kiểm tra an toàn","out":"Một prompt dùng được ngay"},{"t":"15:50 – 16:00","a":"Chốt, giao việc mang sang buổi 3","out":"Một bài học chọn sẵn"}],"lessons":["c3-an-toan","c4-ai"],"tools":["sift","atm","prompt"],"deck":"b2"}]},{"title":"Ngày 2","subtitle":"Năm trụ cột, mô hình 4C và thực hành kế hoạch bài dạy","sessions":[{"id":"b3","label":"Buổi 3","when":"Ngày 2 · Sáng","length":"120 phút","title":"Năm trụ cột, đặc thù khối và mô hình 4C","goal":"Chọn được một địa chỉ tích hợp tự nhiên cho bài sắp dạy và dựng khung bốn ô 4C khớp bốn hoạt động của Công văn 5512.","blocks":[{"t":"08:00 – 08:20","a":"Năm trụ cột, năm giải pháp; xác định trụ cột yếu nhất của tổ","out":"Một trụ cột ưu tiên"},{"t":"08:20 – 08:50","a":"Tích hợp đúng địa chỉ: bốn nguyên tắc và ví dụ khiên cưỡng","out":"Một địa chỉ tích hợp cho bài thật"},{"t":"08:50 – 09:15","a":"Chia bốn khóa: đặc thù khối, ma trận mã TC/NC và ATM","out":"Chọn một bài cho buổi 4"},{"t":"09:15 – 09:45","a":"Mô hình 4C ↔ bốn hoạt động 5512; phân bổ 45 phút","out":"Khung bốn ô có thời lượng"},{"t":"09:45 – 10:20","a":"Chín hoạt động thực hành: chọn 3–4 hoạt động cho học kỳ","out":"Danh sách hoạt động của tổ"},{"t":"10:20 – 10:30","a":"Chốt, chuẩn bị vật liệu cho buổi 4","out":"Bài giảng và học liệu mang theo"}],"lessons":["c5-tru-cot","tx1-dac-thu","tn1-dac-thu","px1-dac-thu","pn1-dac-thu"],"tools":["khbd"],"deck":"b3"},{"id":"b4","label":"Buổi 4","when":"Ngày 2 · Chiều","length":"150 phút","title":"Thực hành kế hoạch bài dạy 4C theo khóa","goal":"Mỗi nhóm hoàn thành một kế hoạch bài dạy 45 phút đủ bốn hoạt động, có mã năng lực, chủ đề ATM, rubric ba mức và phương án không thiết bị.","blocks":[{"t":"13:30 – 13:40","a":"Yêu cầu sản phẩm và sáu tiêu chí chấm","out":"Hiểu rubric chấm chéo"},{"t":"13:40 – 14:40","a":"Làm việc theo bốn khóa: viết kế hoạch bài dạy 45 phút","out":"Bản nháp kế hoạch bài dạy"},{"t":"14:40 – 15:10","a":"Chuẩn hóa bằng công cụ KHBD 4C và in bản nộp","out":"Kế hoạch bài dạy bản in"},{"t":"15:10 – 15:50","a":"Trình bày 2 phút mỗi nhóm; chấm chéo theo tiêu chí","out":"Phiếu góp ý chéo"},{"t":"15:50 – 16:00","a":"Chốt lỗi thường gặp; nộp sản phẩm","out":"Sản phẩm nộp buổi 4"}],"lessons":["tx2-khbd","tn2-khbd","px2-khbd","pn2-khbd"],"tools":["khbd"],"deck":"b4"}]},{"title":"Ngày 3","subtitle":"Kế hoạch tổ 4 tuần, đo tiến bộ và duy trì","sessions":[{"id":"b5","label":"Buổi 5","when":"Ngày 3 · Sáng","length":"120 phút","title":"Kế hoạch tổ chuyên môn 4 tuần: PDCA, RACI, KPI","goal":"Mỗi tổ hoàn thành một kế hoạch bốn tuần có mục tiêu SMART, phân công RACI, năm vùng chỉ số và thư mục minh chứng.","blocks":[{"t":"08:00 – 08:20","a":"Từ một tiết đến cả tổ: năm bước; mốc bốn tuần","out":"Mốc thời gian của tổ"},{"t":"08:20 – 09:00","a":"PDCA từng tuần, năm vùng KPI, cách đo bằng minh chứng","out":"Bảng PDCA nháp"},{"t":"09:00 – 09:40","a":"RACI: vai trò – việc – người chịu trách nhiệm; thư mục minh chứng","out":"Bảng RACI của tổ"},{"t":"09:40 – 10:10","a":"Thực hành điền mẫu kế hoạch in","out":"Kế hoạch tổ bản in"},{"t":"10:10 – 10:30","a":"Chấm chéo theo SMART; chốt","out":"Kế hoạch đã chỉnh sửa"}],"lessons":["tx3-ke-hoach","tn3-ke-hoach","px3-ke-hoach","pn3-ke-hoach"],"tools":["plan"],"deck":"b5"},{"id":"b6","label":"Buổi 6","when":"Ngày 3 · Chiều","length":"150 phút","title":"Tổng kết: trình bày, đo tiến bộ và duy trì","goal":"Đo được tiến bộ trước – sau bằng cùng một đề 12 câu; mỗi tổ chốt cam kết 30 ngày và cơ chế sinh hoạt chung.","blocks":[{"t":"13:30 – 13:50","a":"Kiểm tra đầu ra 12 câu, so sánh với điểm đầu vào","out":"Điểm cá nhân trước – sau"},{"t":"13:50 – 14:40","a":"Trình bày sản phẩm tổ: 5 phút mỗi nhóm, một sản phẩm và một bài học","out":"Sản phẩm trình bày"},{"t":"14:40 – 15:10","a":"Đánh giá theo rubric tổng hợp; phản hồi của giảng viên","out":"Điểm sản phẩm"},{"t":"15:10 – 15:40","a":"Cam kết 30 ngày, cộng đồng thực hành, kho học liệu chung","out":"Checklist 30 ngày"},{"t":"15:40 – 16:00","a":"Hỏi đáp, đầu mối hỗ trợ, phiếu phản hồi cuối khóa","out":"Phiếu phản hồi và chứng nhận"}],"lessons":[],"tools":[],"deck":"b6"}]}]},"slides":{"decks":[{"id":"b1","label":"Buổi 1","day":"Ngày 1 · Sáng","title":"Căn cứ pháp lý và bản đồ năng lực","subtitle":"Mỗi giáo viên trả lời được: việc này dựa vào văn bản nào, ghi mã nào cho học sinh?","slides":[{"k":"BUỔI 1 · NGÀY 1 · SÁNG","t":"Căn cứ pháp lý và bản đồ năng lực","b":["120 phút · Ngày 1 trong 3 ngày tập huấn","Sản phẩm: phiếu mã hóa một bài sắp dạy"]},{"k":"MỤC TIÊU","t":"Bốn việc làm được cuối buổi","b":["Nêu sáu văn bản và việc phải làm với từng văn bản","Phân biệt bốn hệ thống mã đang chồng lên nhau","Đọc đúng một mã TC1/TC2/NC1 bất kỳ","Ghi một mã năng lực + một chủ đề ATM cho bài thật"]},{"k":"KHỞI ĐỘNG","t":"Ba câu hỏi mà giáo viên sẽ gặp","b":["Tổ trưởng hỏi: “Mã này lấy ở đâu?”","Phụ huynh hỏi: “Vì sao con tôi phải học an toàn mạng?”","Lớp mất mạng, buổi chiều dạy gì?"],"n":"Nhận câu trả lời chưa cần đúng. Chốt: mỗi câu cần một câu trả lời có căn cứ, không cần học thuộc văn bản."},{"k":"SÁU VĂN BẢN","t":"Sáu con số – sáu việc phải làm","b":["18/2026 – năng lực số của giáo viên","02/2025 + 3456 – năng lực số của người học","2422 – giáo dục AI theo bốn mạch","6206 – an toàn mạng theo tám chủ đề ATM","4725 + 131 + 5512 – trường học số và khung kế hoạch bài dạy","Luật 91/2025, 116/2025, 134/2025, Trẻ em 102/2016 – dữ liệu, an ninh mạng, AI, trẻ em"]},{"k":"BỐN TẤM BẢN ĐỒ","t":"Đừng nhầm bốn hệ thống","b":["Giáo viên: 6 miền, 20 năng lực, 3 mức","Học sinh: 6 miền, 24 năng lực, TC1/TC2/NC1","AI: bốn mạch NLa – NLb – NLc – NLd","An toàn mạng: tám chủ đề ATM1 – ATM8"],"n":"Kế hoạch bài dạy chỉ cần ghi hệ thống của học sinh và chủ đề ATM; hai hệ thống đầu dùng để tự đánh giá."},{"k":"CÁCH ĐỌC MÃ","t":"1.2.TC2a đọc thế nào?","b":["1 – miền thứ nhất: khai thác dữ liệu và thông tin","2 – năng lực thành phần thứ hai","TC2 – trình độ cho lớp 8–9","a – chỉ báo cụ thể trong nhóm năng lực"]},{"k":"BA TRÌNH ĐỘ","t":"TC1 – TC2 – NC1","b":["Lớp 6–7: TC1, Bậc 3 – làm được việc quen thuộc khi có hướng dẫn","Lớp 8–9: TC2, Bậc 4 – tự tổ chức việc học, biết phản biện","Lớp 10–12: NC1, Bậc 5 – tự chủ, dẫn dắt nhóm, đánh giá nguồn"]},{"k":"MÃ HAY DÙNG","t":"Sáu việc học và mã tương ứng","b":["Tìm kiếm, đánh giá nguồn: 1.1.TC2b · 1.2.TC2a · 1.1.NC1b","Hợp tác, trích dẫn: 2.5.TC2a · 2.2.NC1c","Sản phẩm số, bản quyền: 3.1.TC2b · 3.3.NC1a","Dữ liệu, lừa đảo: 4.1.TC2b · 4.2.NC1a","Giải quyết vấn đề: 5.2.TC2b · 5.4.NC1b","AI có trách nhiệm: 6.2.TC2c · 6.3.NC1a"]},{"k":"TÍCH HỢP AI","t":"Chọn một mạch, không chọn cả bốn","b":["NLa – tư duy lấy con người làm trung tâm","NLb – đạo đức AI: thiên lệch, riêng tư, trách nhiệm","NLc – kỹ thuật và ứng dụng: dùng đúng việc","NLd – thiết kế hệ thống: dữ liệu vào – xử lý – người kiểm tra"],"n":"Ví dụ đúng địa chỉ: tiết Lịch sử dùng SIFT kiểm chứng một đoạn tư liệu lan truyền – ghi 1.2.TC2a và ATM1."},{"k":"THỰC HÀNH 15 PHÚT","t":"Phiếu mã hóa một bài thật","b":["Chọn một bài bạn dạy trong hai tuần tới","Ghi một mã năng lực của học sinh đúng trình độ","Ghi một chủ đề ATM gắn với hoạt động thật","Viết một phương án không thiết bị cho chính hoạt động đó"]},{"k":"TIÊU CHÍ","t":"Một phiếu đạt khi","b":["Mã đúng miền và đúng trình độ lớp","Chủ đề ATM gắn với việc học, không dán ngoài lề","Phương án không thiết bị không làm mất mục tiêu bài học"]},{"k":"VIỆC LÀM NGAY","t":"Ba việc trước buổi 2","b":["Lưu sáu số hiệu văn bản vào ghi chú","Khoanh chỗ ghi mã trong kế hoạch bài dạy gần nhất","Hỏi tổ trưởng: đầu mối an toàn số của trường là ai?"]},{"k":"BUỔI TIẾP","t":"Buổi 2: An toàn số và AI có trách nhiệm","b":["SIFT, 4 KHÔNG – 3 CÓ, bảy bước ứng phó","Năm lỗi của AI và prompt bốn thẻ","Mang theo một tình huống thật từ trường bạn"]}]},{"id":"b2","label":"Buổi 2","day":"Ngày 1 · Chiều","title":"An toàn số và AI có trách nhiệm","subtitle":"Xử lý được một sự cố theo bảy bước và viết prompt an toàn","slides":[{"k":"BUỔI 2 · NGÀY 1 · CHIỀU","t":"An toàn số và AI có trách nhiệm","b":["120 phút","Sản phẩm: thẻ bảy bước + một prompt bốn thẻ"]},{"k":"KHỞI ĐỘNG","t":"Ba tình huống thật ở trường","b":["Ảnh chụp thông báo nghỉ học lan trong nhóm Zalo lớp","Nhóm chat dùng biệt danh chế giễu một bạn","Phụ huynh nhận tin nhắn tống tiền kèm ảnh ghép"],"n":"Không kể chi tiết vụ việc thật. Hỏi: bước đầu tiên của thầy cô là gì?"},{"k":"KIỂM CHỨNG TIN","t":"SIFT: bốn bước","b":["Dừng lại – chưa chia sẻ ngay","Điều tra nguồn: ai đăng, khi nào, có dấu hiệu chỉnh sửa?","Tìm nguồn tốt hơn: cơ quan chức năng, báo chính thống","Truy vết: đối chiếu bản gốc, người đưa tin có trách nhiệm"]},{"k":"QUY TẮC LỚP","t":"4 KHÔNG – 3 CÓ","b":["Không đưa dữ liệu định danh học sinh lên AI công cộng","Không dùng AI để đạo văn, làm hộ, bôi nhọ","Không tin tuyệt đối kết quả AI khi chưa đối chiếu","Không chia sẻ mật khẩu, OTP; không im lặng khi bị đe dọa","Có: kiểm chứng theo SIFT · ghi nguồn và nói rõ chỗ dùng AI · kết nối người lớn tin cậy, gọi 111"]},{"k":"ỨNG PHÓ","t":"Bảy bước khi có sự cố","b":["1. Tiếp nhận bình tĩnh, không phán xét","2. Không hứa giữ bí mật tuyệt đối","3. Lưu bằng chứng đúng cách","4. Phân loại ba mức","5. Báo đầu mối an toàn số của trường","6. Phối hợp gia đình, 111 hoặc 113 khi cần","7. Theo dõi, phục hồi, phòng ngừa tái diễn"]},{"k":"BA MỨC","t":"Ai xử lý, báo cho ai?","b":["Mức 1 – nhẹ: giáo viên chủ nhiệm xử lý, ghi nhận","Mức 2 – trung bình: báo ban giám hiệu và phụ huynh","Mức 3 – nghiêm trọng (grooming, tống tiền, ảnh nhạy cảm, đe dọa tự hại): báo ngay, gọi 111/113"],"n":"111 – Tổng đài Quốc gia Bảo vệ Trẻ em, miễn phí 24/7. 113 – công an khẩn cấp."},{"k":"GIỚI HẠN CỦA AI","t":"Năm lỗi phải kiểm","b":["Ảo giác tri thức: khẳng định chắc chắn điều không có thật","Trích dẫn bịa: tên bài, tác giả, link trông rất thật","Thiên lệch: bỏ qua nhóm yếu thế","Sai tính toán hoặc logic: nhảy bước, sai đơn vị","Nội dung không phù hợp lứa tuổi"]},{"k":"DỮ LIỆU","t":"Không đưa vào AI công cộng","b":["Họ tên, số định danh, địa chỉ, số điện thoại học sinh","Bảng điểm, nhận xét hạnh kiểm, ảnh riêng tư","Nội dung tố giác, thông tin sự cố chưa xử lý","Mật khẩu, mã OTP, tài khoản của trường"]},{"k":"PROMPT 4 THẺ","t":"Ngữ cảnh – Dữ liệu – Hướng dẫn – Kết quả","b":["Ngữ cảnh: môn, lớp, bài, học sinh, thời lượng","Dữ liệu: được dùng gì, cấm đưa gì","Hướng dẫn: nhiệm vụ, định dạng, mức phân hóa","Kết quả: sản phẩm, tiêu chí, điều phải kiểm chứng"]},{"k":"MINH BẠCH","t":"Nói rõ chỗ dùng AI","b":["Khai báo với tổ khi dùng AI soạn học liệu","Dạy học sinh mẫu khai báo: dùng công cụ nào, cho phần nào, tự sửa gì","Không nộp nguyên văn đầu ra của AI như sản phẩm cá nhân"]},{"k":"THỰC HÀNH 25 PHÚT","t":"Hai sản phẩm","b":["Xử lý một sự cố giả định theo bảy bước, ghi rõ mức","Viết một prompt bốn thẻ cho bài sắp dạy; kiểm tra không có dữ liệu định danh"]},{"k":"VIỆC LÀM NGAY","t":"Trước buổi 3","b":["In thẻ bảy bước, dán tại tổ chuyên môn","Lưu prompt đã viết để dùng cho tiết thật","Mang theo một bài học muốn thiết kế lại theo 4C"]}]},{"id":"b3","label":"Buổi 3","day":"Ngày 2 · Sáng","title":"Năm trụ cột, đặc thù khối và mô hình 4C","subtitle":"Chọn đúng địa chỉ tích hợp và dựng khung bốn ô 4C","slides":[{"k":"BUỔI 3 · NGÀY 2 · SÁNG","t":"Năm trụ cột, đặc thù khối và mô hình 4C","b":["120 phút","Sản phẩm: khung 4C cho một bài thật"]},{"k":"NĂM TRỤ CỘT","t":"Một trường số không phải là trường mua nhiều thiết bị","b":["Quản trị số tinh gọn","Sư phạm số thích ứng (THCS: trực quan, trò chơi hóa; THPT: phản biện, đồng sáng tạo)","Kết nối cộng đồng số (THPT thêm hướng nghiệp)","Nhân lực số nòng cốt, nâng đỡ nội bộ","Hạ tầng an toàn, bảo mật, thượng tôn pháp luật số"]},{"k":"NĂM GIẢI PHÁP","t":"Làm gì trước, làm gì sau","b":["Văn phòng điện tử liên thông","Chuyển từ truyền thụ sang kiến tạo trải nghiệm","Sổ liên lạc điện tử đồng bộ","Cộng đồng học tập chuyên môn trong tổ","“Vùng xanh” Internet học đường và quy trình sự cố"]},{"k":"TÍCH HỢP","t":"Đúng địa chỉ, không khiên cưỡng","b":["Tin học giữ vai trò chủ đạo về kiến thức nền","Chỉ lồng ghép khi hoạt động thật sự cần","An toàn tâm lý và dữ liệu: không dùng vụ việc thật làm ví dụ","Dùng ma trận tích hợp để ghi mã, không suy diễn"]},{"k":"VÍ DỤ","t":"Cùng một bài, hai cách tích hợp","b":["Khiên cưỡng: tiết Lịch sử bắt học sinh cài phần mềm","Đúng địa chỉ: kiểm chứng một đoạn tư liệu lan truyền bằng SIFT – ghi 1.2.TC2a, ATM1"],"n":"Hỏi học viên: bài của bạn có địa chỉ tích hợp tự nhiên nào?"},{"k":"BỐN CHỮ C","t":"4C cho một tiết 45 phút","b":["Context – Ngữ cảnh: tình huống thật, vì sao liên quan đến em","Challenge – Thử thách: nhiệm vụ vừa sức, được sai và sửa","Concept – Khái niệm: khám phá, đối chiếu sách giáo khoa","Conclusion – Kết luận: tổng kết, vận dụng tình huống mới"]},{"k":"KHỚP 5512","t":"Bốn ô, không cấu trúc mới","b":["Mở đầu ↔ Context","Hình thành kiến thức ↔ Challenge + Concept","Luyện tập ↔ Concept + Conclusion","Vận dụng ↔ Conclusion"],"n":"Khi soạn chỉ cần điền bốn ô với thời lượng cụ thể; không tạo thêm mục lục."},{"k":"PHÂN BỔ PHÚT","t":"Ba bài mẫu trong tài liệu","b":["Ngữ văn 8: 6 – 15 – 14 – 10","Toán 8: 6 – 17 – 14 – 8","Vật lí 11: 5 – 18 – 14 – 8"],"n":"Tổng luôn 45 phút. Hoạt động 2 chiếm nhiều nhất nhưng không quá 20 phút."},{"k":"CHÍN HOẠT ĐỘNG","t":"Chọn 3–4 hoạt động mỗi học kỳ","b":["Soạn thảo với AI · tra cứu NotebookLM · biên bản từ ghi âm","Kế hoạch bài dạy 4C · ngân hàng câu hỏi phân hóa · trò chơi hóa ôn tập","Học liệu đa phương tiện · video micro-learning · chatbot ôn tập"],"n":"Mỗi hoạt động có sản phẩm riêng. Không dùng dữ liệu học sinh thật trong sản phẩm mẫu."},{"k":"BA CÁCH LÀM NHẸ","t":"Không cần cả phòng máy","b":["Micro-learning: một video hoặc thẻ nội dung 3 phút","Trò chơi hóa: Quizizz hoặc thẻ giấy – phản hồi nhanh, không xếp hạng","Học liệu mở: tài nguyên có giấy phép, ghi nguồn ở trang cuối"]},{"k":"THỰC HÀNH","t":"Điền khung 4C","b":["Chọn một bài, viết bốn dòng cho bốn chữ C","Ghi thời lượng từng hoạt động, tổng 45 phút","Đánh dấu chỗ có thể thay bằng phiếu in khi mất mạng"]},{"k":"CHUẨN BỊ BUỔI 4","t":"Mang đủ vật liệu","b":["Bài đã chọn và khung 4C","Sách giáo khoa, tư liệu, học liệu số có sẵn","Máy tính hoặc điện thoại nếu muốn dùng công cụ KHBD"]}]},{"id":"b4","label":"Buổi 4","day":"Ngày 2 · Chiều","title":"Thực hành kế hoạch bài dạy 4C theo khóa","subtitle":"45 phút · bốn hoạt động · mã năng lực · rubric · phương án không thiết bị","slides":[{"k":"BUỔI 4 · NGÀY 2 · CHIỀU","t":"Thực hành kế hoạch bài dạy 4C","b":["150 phút · làm việc theo bốn khóa","Sản phẩm: một kế hoạch bài dạy 45 phút, bản in"]},{"k":"CHIA KHÓA","t":"Bốn phòng, bốn bài mẫu","b":["THCS KHXH: Ngữ văn 8 – Đọc văn bản thông tin và kiểm chứng tin tức","THCS KHTN: Toán 8 – Thu thập và phân loại dữ liệu","THPT KHXH: Lịch sử 11 – Một sự kiện, ba nguồn","THPT KHTN: Vật lí 11 – Dao động điều hòa"]},{"k":"YÊU CẦU","t":"Sáu thành phần bắt buộc","b":["Bốn hoạt động có thời lượng, tổng 45 phút","Một mã năng lực học sinh đúng trình độ","Một chủ đề ATM gắn với hoạt động","Rubric ba mức, tối thiểu ba tiêu chí","Phương án không thiết bị","Chỗ dùng AI và chỗ không dùng AI"]},{"k":"QUY TRÌNH 60 PHÚT","t":"Làm theo năm bước","b":["1. Chốt yêu cầu cần đạt bằng một câu","2. Viết Context và Challenge trước","3. Viết Concept và Conclusion sau","4. Gắn mã năng lực, ATM, rubric","5. Kiểm tra phương án không thiết bị"]},{"k":"CÔNG CỤ","t":"Dùng KHBD 4C để chuẩn hóa","b":["Chọn môn, lớp, bài, thời lượng","Chọn mã năng lực và chủ đề ATM từ danh sách","Điền bốn ô; xuất và in bản nộp"],"n":"Công cụ chỉ tạo khung. Nội dung chuyên môn vẫn do giáo viên viết."},{"k":"RUBRIC","t":"Ba mức, ba tiêu chí","b":["Kiểm chứng thông tin: chưa – đúng quy trình – biết phản biện","Ứng xử số và dữ liệu: chưa – an toàn – chủ động bảo vệ","Sản phẩm và bản quyền: chưa – có ghi nguồn – sáng tạo có trách nhiệm"]},{"k":"SÁU LỖI","t":"Lỗi thường gặp khi soạn","b":["Nhồi ba công cụ vào một tiết","Ghi mã cho đủ chỗ nhưng không gắn hoạt động","Hoạt động 2 chiếm quá 25 phút","Không có phương án khi mất mạng","Rubric chung chung, không quan sát được","Dùng dữ liệu học sinh thật trong ví dụ"]},{"k":"CHẤM CHÉO","t":"Năm tiêu chí, thang 2 điểm","b":["Đúng yêu cầu cần đạt","Bốn hoạt động khớp 4C và đủ phút","Mã năng lực và ATM đúng địa chỉ","Rubric quan sát được","Phương án không thiết bị giữ được mục tiêu"]},{"k":"TRÌNH BÀY","t":"Hai phút mỗi nhóm","b":["Một câu yêu cầu cần đạt","Một hoạt động đáng kể nhất","Một chỗ đã sửa sau khi chấm chéo"]},{"k":"NỘP BÀI","t":"Sản phẩm cuối buổi","b":["Bản in kế hoạch bài dạy","Rubric đã điền thử cho một sản phẩm học sinh","Ghi chú phương án không thiết bị"]},{"k":"BUỔI TIẾP","t":"Buổi 5: từ một tiết đến cả tổ","b":["PDCA bốn tuần, RACI, năm vùng KPI","Thư mục minh chứng","Mang theo kế hoạch bài dạy vừa hoàn thành"]}]},{"id":"b5","label":"Buổi 5","day":"Ngày 3 · Sáng","title":"Kế hoạch tổ chuyên môn 4 tuần","subtitle":"PDCA – RACI – KPI – minh chứng","slides":[{"k":"BUỔI 5 · NGÀY 3 · SÁNG","t":"Kế hoạch tổ chuyên môn 4 tuần","b":["120 phút","Sản phẩm: kế hoạch tổ bốn tuần, bản in"]},{"k":"NĂM BƯỚC","t":"Từ một tiết đến cả tổ","b":["Chọn một tiết làm mẫu, không chọn mười bài","Dạy thử, ghi ba điểm vướng","Điều chỉnh học liệu","Chia sẻ cho tổ, cùng dạy lại","Đo bằng sản phẩm học sinh"]},{"k":"PDCA","t":"Bốn tuần, bốn việc","b":["Tuần 1 – Plan: chọn một bài, chốt mục tiêu SMART","Tuần 2 – Do: dạy thử, ghi lỗi kỹ thuật và lỗi học tập","Tuần 3 – Check: so sánh dự đoán với kết quả, thu minh chứng","Tuần 4 – Act: chuẩn hóa thành quy trình của tổ"]},{"k":"SMART","t":"Mục tiêu viết được, đo được","b":["Ví dụ: “Đến 30/4, 100% giáo viên tổ Văn có một kế hoạch bài dạy 4C được duyệt”","Có mốc thời gian, số lượng, bằng chứng","Không viết: “đẩy mạnh chuyển đổi số trong tổ”"]},{"k":"RACI","t":"Ai làm, ai chịu trách nhiệm","b":["R – người thực hiện","A – người chịu trách nhiệm cuối","C – người được hỏi ý kiến","I – người được thông báo"],"n":"Mỗi việc chỉ có một chữ A. Nhiều chữ A là không ai chịu trách nhiệm."},{"k":"NĂM VÙNG KPI","t":"Không quá ba chỉ số mỗi vùng trong 30 ngày","b":["Hồ sơ dạy học: số bài có kế hoạch 4C được duyệt","Giờ dạy: số tiết có ít nhất một hoạt động số","Học sinh: tỉ lệ nộp sản phẩm đúng hạn","An toàn dữ liệu: số tệp dữ liệu cá nhân ngoài nơi cho phép (mục tiêu 0)","Chia sẻ chuyên môn: số lượt chia sẻ trong sinh hoạt tổ"]},{"k":"MINH CHỨNG","t":"Thư mục bằng chứng","b":["01-kế hoạch: kế hoạch tổ, phân công","02-bài dạy: kế hoạch bài dạy, học liệu, ảnh tiết dạy","03-sản phẩm học sinh: ảnh, tệp, phiếu chấm","04-biên bản: sinh hoạt tổ, góp ý, điều chỉnh","05-tự đánh giá: phiếu 12 câu đầu vào – đầu ra"]},{"k":"THỰC HÀNH 30 PHÚT","t":"Điền mẫu kế hoạch in","b":["Điền PDCA bốn tuần cho tổ của bạn","Phân công RACI cho năm việc chính","Chọn ba chỉ số đo được ngay trong 30 ngày"]},{"k":"CHẤM CHÉO","t":"Bốn câu hỏi","b":["Mục tiêu có số và mốc thời gian chưa?","Mỗi việc có đúng một chữ A chưa?","Chỉ số có dữ liệu sẵn để đo chưa?","Minh chứng nằm ở đâu, ai giữ?"]},{"k":"BUỔI TIẾP","t":"Buổi 6: đo tiến bộ và duy trì","b":["Kiểm tra đầu ra 12 câu","Trình bày sản phẩm tổ","Cam kết 30 ngày"]}]},{"id":"b6","label":"Buổi 6","day":"Ngày 3 · Chiều","title":"Tổng kết: trình bày, đo tiến bộ và duy trì","subtitle":"Đo trước – sau bằng cùng một đề, chốt cam kết 30 ngày","slides":[{"k":"BUỔI 6 · NGÀY 3 · CHIỀU","t":"Tổng kết và duy trì","b":["150 phút","Sản phẩm: điểm đầu ra, sản phẩm tổ, cam kết 30 ngày"]},{"k":"CHƯƠNG TRÌNH BUỔI","t":"Năm phần","b":["Kiểm tra đầu ra 12 câu","Trình bày sản phẩm tổ","Đánh giá theo rubric tổng hợp","Cam kết 30 ngày và cộng đồng thực hành","Hỏi đáp, phiếu phản hồi, chứng nhận"]},{"k":"ĐO TIẾN BỘ","t":"Cùng một đề, hai thời điểm","b":["Làm lại đúng 12 câu của buổi 1","So sánh điểm đầu vào – đầu ra","Mục tiêu thực tế: tăng ít nhất 2 câu"]},{"k":"TRÌNH BÀY","t":"Năm phút mỗi tổ","b":["Một sản phẩm học sinh","Một kế hoạch bài dạy đã dạy thử","Một bài học: điều gì hiệu quả, điều gì bỏ"]},{"k":"RUBRIC TỔNG HỢP","t":"Bốn tiêu chí","b":["Đúng căn cứ: mã năng lực, ATM, khung 5512","Khả thi: làm được với hạ tầng hiện có","An toàn: dữ liệu, tâm lý, bản quyền","Lan tỏa: tổ khác dùng lại được"]},{"k":"CAM KẾT 30 NGÀY","t":"Ba việc, một mốc","b":["Dạy lại một bài 4C có ghi mã và ATM","Đưa một hoạt động vào sinh hoạt tổ","Lưu minh chứng vào thư mục chung"],"n":"Mỗi học viên ghi ba việc và mốc ngày cụ thể; tổ trưởng giữ bản tổng hợp."},{"k":"DUY TRÌ","t":"Cộng đồng thực hành","b":["Kho học liệu chung của tổ, một nơi duy nhất","Lịch sinh hoạt: mỗi tháng một sản phẩm mới","Người phụ trách luân phiên, có biên bản"]},{"k":"HỖ TRỢ","t":"Đầu mối khi cần","b":["An toàn số của trường: hiệu phó hoặc tổ tư vấn tâm lý","111 – bảo vệ trẻ em, miễn phí 24/7","113 – công an khẩn cấp","Điền số đầu mối của Sở và nhà trường vào thẻ in"]},{"k":"PHẢN HỒI","t":"Phiếu cuối khóa","b":["Tám tiêu chí thang 1–5","Ba câu mở: giữ gì, bỏ gì, cần thêm gì","Dùng dữ liệu tổng hợp để điều chỉnh khóa sau"]},{"k":"KẾT","t":"Ba câu chốt","b":["Dạy để dùng được, không chỉ để biết.","Một tiết làm mẫu, một tổ cùng làm, một thư mục minh chứng.","Công nghệ là phương tiện; an toàn và trách nhiệm là điều kiện."]}]}]}}</script>
+<script id="assessData" type="application/json">{"title":"Kiểm tra đầu vào – đầu ra","intro":"12 câu, khoảng 10 phút. Làm cùng một đề vào buổi 1 và buổi 6 để đo tiến bộ. Không ghi tên vào máy; điểm chỉ lưu trên trình duyệt của bạn.","bands":[{"max":5,"label":"Chưa sẵn sàng","advice":"Học trọn khóa Nền tảng chung trước, sau đó chọn khóa chuyên môn."},{"max":9,"label":"Cơ bản","advice":"Học 5 bài nền tảng, làm 6 công cụ, rồi vào khóa chuyên môn."},{"max":12,"label":"Thành thạo","advice":"Vào thẳng khóa chuyên môn; dùng bài học để dẫn dắt tổ chuyên môn."}],"questions":[{"area":"Căn cứ pháp lý","q":"Văn bản nào quy định khung năng lực số của giáo viên?","opts":["Thông tư 18/2026/TT-BGDĐT","Thông tư 02/2025/TT-BGDĐT","Quyết định 2422/QĐ-BGDĐT"],"correct":0,"explain":"18/2026 là khung của giáo viên; 02/2025 là khung của người học; 2422 là khung nội dung giáo dục AI."},{"area":"Mã năng lực","q":"Học sinh lớp 9 dùng ký hiệu năng lực số nào?","opts":["TC1 – Bậc 3","TC2 – Bậc 4","NC1 – Bậc 5"],"correct":1,"explain":"Lớp 6–7 dùng TC1; lớp 8–9 dùng TC2; lớp 10–12 dùng NC1."},{"area":"Mã năng lực","q":"Trong mã 1.2.TC2a, số 1 đầu tiên có nghĩa là gì?","opts":["Năng lực thứ nhất","Miền năng lực thứ nhất","Bậc trình độ 1"],"correct":1,"explain":"Số đầu là miền; số thứ hai là năng lực thành phần; TC2 là trình độ; a là chỉ báo."},{"area":"An toàn số","q":"Bước đầu tiên của quy trình SIFT là gì?","opts":["Tìm nguồn tốt hơn","Dừng lại, chưa chia sẻ","Truy vết tác giả"],"correct":1,"explain":"SIFT: Dừng lại – Điều tra – Tìm nguồn – Truy vết."},{"area":"An toàn số","q":"Việc nào tuyệt đối tránh khi dùng AI trong dạy học?","opts":["Dùng tài khoản lớp do trường cấp","Nhập họ tên và điểm của học sinh vào AI công cộng","Dùng phiếu in dự phòng"],"correct":1,"explain":"Dữ liệu định danh học sinh không được đưa vào công cụ AI công cộng."},{"area":"Ứng phó sự cố","q":"Khi tiếp nhận học sinh bị đe dọa trên mạng, việc đầu tiên là gì?","opts":["Tịch thu điện thoại ngay","Lắng nghe bình tĩnh, không phán xét","Yêu cầu học sinh tự xóa bằng chứng"],"correct":1,"explain":"Bước 1 của quy trình bảy bước: tiếp nhận bình tĩnh, khẳng định học sinh đã đúng khi tìm hỗ trợ."},{"area":"Ứng phó sự cố","q":"Sự cố nghiêm trọng (tống tiền, ảnh nhạy cảm, đe dọa tự hại) thuộc mức nào và báo ai?","opts":["Mức 1 – giáo viên chủ nhiệm","Mức 2 – ban giám hiệu","Mức 3 – báo ngay, gọi 111 hoặc 113"],"correct":2,"explain":"Mức 3 phải báo ngay đầu mối an toàn số và gọi 111 (bảo vệ trẻ em) hoặc 113 (công an khẩn cấp)."},{"area":"Mô hình 4C","q":"Bốn chữ C của mô hình là gì?","opts":["Context – Challenge – Concept – Conclusion","Content – Class – Check – Certificate","Create – Copy – Check – Continue"],"correct":0,"explain":"Ngữ cảnh – Thử thách – Khái niệm – Kết luận, khớp bốn hoạt động của Công văn 5512."},{"area":"Khung bài dạy","q":"Kế hoạch bài dạy theo Công văn 5512 có mấy hoạt động chính?","opts":["Ba hoạt động","Bốn hoạt động","Năm hoạt động"],"correct":1,"explain":"Mở đầu – Hình thành kiến thức – Luyện tập – Vận dụng."},{"area":"Giáo dục AI","q":"Quyết định 2422 chia nội dung giáo dục AI thành bốn mạch nào?","opts":["NLa – NLb – NLc – NLd","ATM1 – ATM4","TC1 – TC2 – NC1 – NC2"],"correct":0,"explain":"NLa tư duy lấy con người làm trung tâm; NLb đạo đức; NLc kỹ thuật và ứng dụng; NLd thiết kế hệ thống."},{"area":"Kế hoạch tổ","q":"Trong PDCA, bước Check làm gì?","opts":["Chọn bài dạy mẫu","So sánh kết quả với mục tiêu và thu minh chứng","Chuẩn hóa quy trình"],"correct":1,"explain":"Check là so sánh dự đoán với kết quả, thu minh chứng; Act mới là chuẩn hóa."},{"area":"Điều kiện dạy học","q":"Khi lớp không có mạng, cách làm đúng tinh thần tài liệu là gì?","opts":["Bỏ hoạt động số","Dùng phiếu in và hoạt động nhóm","Cho học sinh về nhà làm trên điện thoại"],"correct":1,"explain":"Tài liệu yêu cầu hai phương án song hành: có thiết bị và không có thiết bị, không bỏ mục tiêu bài học."}]}</script>
 <script type="text/plain" class="lesson-src" data-id="c1-can-cu"># Căn cứ pháp lý trong 10 phút
 
 :::note Mục tiêu
@@ -613,6 +752,11 @@ Không yêu cầu học sinh đăng ký tài khoản cá nhân hoặc nhập th�
 ? Khi lớp không có mạng, cách làm nào đúng tinh thần tài liệu? | Cho học sinh về nhà làm trên điện thoại | Dùng phiếu in và hoạt động nhóm* | Bỏ hoạt động số | Tài liệu yêu cầu hai phương án song hành, không bỏ hoạt động.
 ? Việc nào tuyệt đối tránh? | Dùng tài khoản lớp do trường cấp | Nhập tên và điểm của học sinh vào AI công cộng* | Dùng phiếu in dự phòng | Dữ liệu định danh học sinh không được đưa vào công cụ AI công cộng.
 :::
+
+## Luyện nhanh
+
+- [Làm bài kiểm tra 12 câu để biết mình đang ở đâu](#/danh-gia)
+- [Chiếu slide buổi 1: căn cứ pháp lý và bản đồ năng lực](#/chieu/b1)
 
 ## Sang bài tiếp
 
@@ -736,6 +880,11 @@ Không cần dạy cả bốn mạch trong một tiết. Chọn **một mạch**
 ? Ghi mã thế nào là đúng? | Ghi càng nhiều mã càng tốt | Ghi 1–2 mã gắn với hoạt động thật* | Chỉ ghi ở tiêu đề bài | Mã phải gắn với hoạt động học cụ thể.
 :::
 
+## Luyện nhanh
+
+- [Tự xếp nhóm A/B/C theo mức sẵn sàng](#/cong-cu/self)
+- [Chiếu slide buổi 1: căn cứ pháp lý và bản đồ năng lực](#/chieu/b1)
+
 ## Sang bài tiếp
 
 Bạn đã có bản đồ. Bài tiếp theo là phần giáo viên hay được hỏi nhất: **làm gì khi một tin xấu lan trong lớp, hoặc một học sinh bị đe dọa trên mạng?**
@@ -847,6 +996,12 @@ Quy trình dành cho cán bộ quản lý và giáo viên chủ nhiệm, theo t�
 ? Câu nào không nên nói với học sinh? | “Em làm đúng khi tìm hỗ trợ.” | “Thầy/cô hứa sẽ không nói với ai.”* | “Việc này không phải lỗi của em.” | Không hứa giữ bí mật tuyệt đối; cần phối hợp người có trách nhiệm.
 :::
 
+## Luyện nhanh
+
+- [Mô phỏng SIFT với một tin thật](#/cong-cu/sift)
+- [Thực hành bảy bước ứng phó sự cố](#/cong-cu/atm)
+- [Chiếu slide buổi 2: an toàn số và AI có trách nhiệm](#/chieu/b2)
+
 ## Sang bài tiếp
 
 An toàn là nền. Bài tiếp theo chuyển sang phần giáo viên sẽ dùng hằng ngày: **AI có trách nhiệm và cách viết câu lệnh để AI trả về việc có ích, có kiểm chứng.**
@@ -944,6 +1099,11 @@ Trước khi giao bài có dùng AI, nói rõ ba điều: (1) được dùng AI 
 ? Thẻ nào trong prompt 4 thẻ nêu nguồn được dùng và dữ liệu cấm? | Ngữ cảnh | Dữ liệu* | Hướng dẫn | Thẻ Dữ liệu quy định nguồn và điều cấm.
 ? Việc nào đúng khi dùng bài tập có AI? | Yêu cầu học sinh nộp nguyên văn | Yêu cầu ghi chú phần AI hỗ trợ và nêu chỗ đã sửa* | Cấm học sinh dùng AI mà không dạy cách kiểm chứng | Minh bạch và kiểm chứng là yêu cầu cốt lõi.
 :::
+
+## Luyện nhanh
+
+- [Tạo prompt 4 thẻ cho một bài sắp dạy](#/cong-cu/prompt)
+- [Chiếu slide buổi 2: an toàn số và AI có trách nhiệm](#/chieu/b2)
 
 ## Sang bài tiếp
 
@@ -1043,6 +1203,11 @@ Chu trình này được chi tiết hóa thành kế hoạch 4 tuần trong bài
 ? Khi lớp mất mạng, cách làm nào phù hợp? | Hủy tiết học | Dùng thẻ tình huống và phiếu in* | Yêu cầu học sinh tự mua dữ liệu | Hai phương án song hành là yêu cầu của chương trình.
 :::
 
+## Luyện nhanh
+
+- [Thiết kế kế hoạch bài dạy 4C cho một bài sắp dạy](#/cong-cu/khbd)
+- [Chiếu slide buổi 3: năm trụ cột và mô hình 4C](#/chieu/b3)
+
 ## Sang khóa chuyên môn
 
 Chọn khóa theo cấp học và khối môn của bạn ở mục lục bên trái. Mỗi khóa có ba bài: đặc thù và ma trận, thực hành kế hoạch bài dạy 4C, kế hoạch 4 tuần của tổ.
@@ -1134,6 +1299,11 @@ Nếu dòng 3 không khớp với hoạt động, quay lại chọn địa chỉ
 ## Sang bài thực hành
 
 Bài tiếp theo dựng trọn một kế hoạch bài dạy 45 phút cho Ngữ văn 8, đủ bốn hoạt động, rubric và phương án không thiết bị.
+
+## Luyện nhanh
+
+- [Tự xếp nhóm A/B/C theo mức sẵn sàng](#/cong-cu/self)
+- [Chiếu slide buổi 3: đặc thù khối và mô hình 4C](#/chieu/b3)
 </script>
 <script type="text/plain" class="lesson-src" data-id="tx2-khbd"># Kế hoạch bài dạy 4C – Ngữ văn 8
 
@@ -1279,6 +1449,11 @@ Ràng buộc: không dùng tên người thật, không dùng tên trường th�
 ? Bước SIFT thứ hai là gì? | Dừng lại | Điều tra* | Truy vết | Thứ tự: Dừng lại – Điều tra – Tìm nguồn – Truy vết.
 ? Khi mất mạng, bước “Tìm nguồn” thay bằng gì? | Bỏ qua bước này | Đối chiếu sách giáo khoa và báo giấy* | Cho học sinh tự đoán | Vẫn phải kiểm chứng, chỉ đổi công cụ.
 :::
+
+## Luyện nhanh
+
+- [Thiết kế kế hoạch bài dạy 4C cho một bài sắp dạy](#/cong-cu/khbd)
+- [Chiếu slide buổi 4: thực hành kế hoạch bài dạy 4C](#/chieu/b4)
 </script>
 <script type="text/plain" class="lesson-src" data-id="tx3-ke-hoach"># Kế hoạch hành động 30 ngày – tổ KHXH
 
@@ -1414,6 +1589,11 @@ Quy ước đặt tên: `YYYYMMDD_mon-bai_phien-ban`. Không đặt tên học s
 ? Chỉ số “0 tệp dữ liệu cá nhân ngoài nơi được phép” thuộc vùng nào? | Hồ sơ dạy học | An toàn dữ liệu* | Chia sẻ chuyên môn | Đây là chỉ số an toàn dữ liệu.
 ? Việc nào KHÔNG cần làm ở tuần 2? | Dạy thử | Thu phiếu quan sát | Mời chuyên gia về tập huấn* | Tuần 2 chỉ dạy thử và ghi lại.
 :::
+
+## Luyện nhanh
+
+- [Lập kế hoạch 4 tuần và đánh giá](#/cong-cu/plan)
+- [Chiếu slide buổi 5: kế hoạch tổ chuyên môn 4 tuần](#/chieu/b5)
 </script>
 <script type="text/plain" class="lesson-src" data-id="tn1-dac-thu"># Đặc thù khối KHTN THCS và ma trận tích hợp
 
@@ -1499,6 +1679,11 @@ Không nhập: dữ liệu học sinh thật, ảnh chụp sổ điểm, mã OTP
 ? Thiết bị IoT cần loại mật khẩu nào? | Mật khẩu mặc định của nhà sản xuất | Mật khẩu mạnh, đã đổi* | Không cần mật khẩu | Mật khẩu mặc định là rủi ro phổ biến.
 ? Hoạt động nào thuộc miền V? | Vẽ sơ đồ luồng xử lý sự cố* | Đọc biểu đồ | Đặt mật khẩu | Xử lý sự cố thuộc giải quyết vấn đề.
 :::
+
+## Luyện nhanh
+
+- [Tự xếp nhóm A/B/C theo mức sẵn sàng](#/cong-cu/self)
+- [Chiếu slide buổi 3: đặc thù khối và mô hình 4C](#/chieu/b3)
 </script>
 <script type="text/plain" class="lesson-src" data-id="tn2-khbd"># Kế hoạch bài dạy 4C – Toán 8
 
@@ -1627,6 +1812,11 @@ Ràng buộc: không có tên người, không có địa chỉ, số phút tron
 ? Vì sao không thu tên học sinh trong phiếu? | Để chấm nhanh hơn | Giảm rủi ro dữ liệu cá nhân* | Vì không cần thiết cho mọi bài | Nguyên tắc tối thiểu dữ liệu.
 ? Câu nào nên có trong nhận xét? | “Lớp em ai cũng nghiện điện thoại” | “Trong mẫu 30 bạn, nhóm dùng buổi tối chiếm nhiều nhất”* | “Theo em là vậy” | Nhận xét cần số liệu và phạm vi mẫu.
 :::
+
+## Luyện nhanh
+
+- [Thiết kế kế hoạch bài dạy 4C cho một bài sắp dạy](#/cong-cu/khbd)
+- [Chiếu slide buổi 4: thực hành kế hoạch bài dạy 4C](#/chieu/b4)
 </script>
 <script type="text/plain" class="lesson-src" data-id="tn3-ke-hoach"># Kế hoạch hành động 30 ngày – tổ KHTN
 
@@ -1753,6 +1943,11 @@ Không lưu ảnh có mặt học sinh rõ ràng nếu chưa có sự đồng ý
 ? Tuần 3 cần kiểm tra gì ngoài sản phẩm học sinh? | An toàn thiết bị* | Số lượng phụ huynh | Điểm thi | Tuần 3 là Check, gồm cả an toàn.
 ? Mục tiêu SMART cần có gì? | Con số và hạn* | Càng nhiều hoạt động càng tốt | Tên phần mềm đắt nhất | SMART cần đo được và có thời hạn.
 :::
+
+## Luyện nhanh
+
+- [Lập kế hoạch 4 tuần và đánh giá](#/cong-cu/plan)
+- [Chiếu slide buổi 5: kế hoạch tổ chuyên môn 4 tuần](#/chieu/b5)
 </script>
 <script type="text/plain" class="lesson-src" data-id="px1-dac-thu"># Đặc thù khối KHXH THPT và ma trận tích hợp
 
@@ -1832,6 +2027,11 @@ Mã gắn với phần này: `6.1.NC1b`, `6.2.NC1c`, `6.3.NC1a`, `ATM7`.
 ? Echo chamber thường được giải thích bằng cơ chế nào? | Thuật toán đề xuất cá nhân hóa* | Tốc độ mạng chậm | Giới hạn dung lượng | Thuật toán lặp lại nội dung hợp gu.
 ? Khi dùng AI gợi ý dàn ý, học sinh phải làm gì? | Khai báo và kiểm chứng* | Xóa lịch sử chat | Đổi tài khoản | Minh bạch là yêu cầu bắt buộc.
 :::
+
+## Luyện nhanh
+
+- [Tự xếp nhóm A/B/C theo mức sẵn sàng](#/cong-cu/self)
+- [Chiếu slide buổi 3: đặc thù khối và mô hình 4C](#/chieu/b3)
 </script>
 <script type="text/plain" class="lesson-src" data-id="px2-khbd"># Kế hoạch bài dạy 4C – Lịch sử 11
 
@@ -1963,6 +2163,11 @@ Ràng buộc: không bịa số liệu; nếu không chắc thì ghi “cần ki
 ? Bước nào bắt buộc sau khi AI trích dẫn? | Đổi câu hỏi | Mở tài liệu gốc kiểm tra* | Chụp ảnh màn hình | Trích dẫn phải được kiểm chứng.
 ? Tiêu chí “phân biệt gốc/phái sinh” thuộc mức nào? | Mức 1 | Mức 2 | Mức 3* | Đây là tiêu chí mức tốt.
 :::
+
+## Luyện nhanh
+
+- [Thiết kế kế hoạch bài dạy 4C cho một bài sắp dạy](#/cong-cu/khbd)
+- [Chiếu slide buổi 4: thực hành kế hoạch bài dạy 4C](#/chieu/b4)
 </script>
 <script type="text/plain" class="lesson-src" data-id="px3-ke-hoach"># Kế hoạch hành động 30 ngày – tổ KHXH THPT
 
@@ -2090,6 +2295,11 @@ Mã gợi ý: `3.1.NC1a`, `3.3.NC1a`, `ATM6`; `5.2.NC1b`, `ATM8`.
 ? Tuần 3 kiểm tra gì? | Chất lượng nguồn và tính minh bạch* | Số lượng máy tính | Điểm trung bình | Tuần 3 là Check.
 ? KPI “% bài có hai nguồn độc lập” thuộc vùng nào? | Học sinh* | Hồ sơ dạy học | Chia sẻ | Đây là chỉ số về sản phẩm học sinh.
 :::
+
+## Luyện nhanh
+
+- [Lập kế hoạch 4 tuần và đánh giá](#/cong-cu/plan)
+- [Chiếu slide buổi 5: kế hoạch tổ chuyên môn 4 tuần](#/chieu/b5)
 </script>
 <script type="text/plain" class="lesson-src" data-id="pn1-dac-thu"># Đặc thù khối KHTN THPT và ma trận tích hợp
 
@@ -2166,6 +2376,11 @@ Mã: `6.1.NC1b`, `6.3.NC1a`, `ATM7`.
 ? Dữ liệu khảo sát học sinh cần xử lý thế nào? | Công khai để minh bạch | Ẩn danh hóa* | Gửi qua nhóm chat | Bảo vệ dữ liệu cá nhân.
 ? “Ba kiểm tra” gồm những gì? | Đơn vị, điều kiện, nguồn* | Màu sắc, cỡ chữ, tốc độ | Tên, lớp, trường | Đây là ba kiểm tra khoa học.
 :::
+
+## Luyện nhanh
+
+- [Tự xếp nhóm A/B/C theo mức sẵn sàng](#/cong-cu/self)
+- [Chiếu slide buổi 3: đặc thù khối và mô hình 4C](#/chieu/b3)
 </script>
 <script type="text/plain" class="lesson-src" data-id="pn2-khbd"># Kế hoạch bài dạy 4C – Vật lí 11
 
@@ -2299,6 +2514,11 @@ Ràng buộc: ghi rõ đơn vị; không dùng số liệu thí nghiệm thật;
 ? Việc nào KHÔNG nên làm với AI? | Kiểm tra đơn vị | Nhập dữ liệu thí nghiệm thật* | Sinh bài tập luyện | Dữ liệu thật có thể lộ thông tin.
 ? “Một biến” trong thiết kế thí nghiệm nghĩa là gì? | Chỉ đổi một yếu tố, giữ nguyên các yếu tố khác* | Chỉ làm một lần đo | Chỉ dùng một dụng cụ | Để quy kết quả cho biến đó.
 :::
+
+## Luyện nhanh
+
+- [Thiết kế kế hoạch bài dạy 4C cho một bài sắp dạy](#/cong-cu/khbd)
+- [Chiếu slide buổi 4: thực hành kế hoạch bài dạy 4C](#/chieu/b4)
 </script>
 <script type="text/plain" class="lesson-src" data-id="pn3-ke-hoach"># Kế hoạch hành động 30 ngày – tổ KHTN THPT
 
@@ -2427,6 +2647,11 @@ Quy ước tên: `mon_khoi_bai_phien-ban`. Không đặt tên học sinh trong t
 ? Tuần 2 nên làm gì với lỗi phần mềm? | Ghi nhật ký* | Đổi phần mềm ngay | Che giấu | Nhật ký giúp chuẩn bị phương án.
 ? Mục tiêu SMART cần gì? | Con số và thời hạn* | Càng nhiều bài càng tốt | Phần mềm đắt nhất | SMART phải đo được.
 :::
+
+## Luyện nhanh
+
+- [Lập kế hoạch 4 tuần và đánh giá](#/cong-cu/plan)
+- [Chiếu slide buổi 5: kế hoạch tổ chuyên môn 4 tuần](#/chieu/b5)
 </script>
 
 <script>/* Phòng thực hành: sáu công cụ chạy hoàn toàn trên máy, không gửi dữ liệu đi đâu. */
@@ -3068,6 +3293,10 @@ Quy ước tên: `mon_khoi_bai_phien-ban`. Không đặt tên học sinh trong t
 
   const allLessons = manifest.tracks.flatMap((t) => t.lessons);
   const lessonById = Object.fromEntries(allLessons.map((l) => [l.id, l]));
+  const TRAINER = JSON.parse(document.getElementById("trainerData").textContent);
+  const ASSESS = JSON.parse(document.getElementById("assessData").textContent);
+  const decksById = Object.fromEntries(TRAINER.slides.decks.map((d) => [d.id, d]));
+  let deckKeyHandler = null;
 
   const esc = (s) => String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   const slug = (s) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/đ/g, "d").replace(/Đ/g, "D").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 60);
@@ -3262,7 +3491,15 @@ Quy ước tên: `mon_khoi_bai_phien-ban`. Không đặt tên học sinh trong t
     }
     html += '<div class="nav-group"><button class="nav-group-head" data-toggle="tools">Phòng thực hành<span class="chev">▾</span></button><ul class="nav-list">' +
       manifest.tools.map((t) => '<li class="nav-item"><a href="#/cong-cu/' + t.id + '"><span class="tick"></span><span class="nav-label">' + esc(t.title) + "</span></a></li>").join("") +
-      '</ul></div><div class="nav-group"><ul class="nav-list"><li class="nav-item"><a href="#/in"><span class="tick"></span><span class="nav-label">Bộ phiếu in ngoại tuyến</span></a></li><li class="nav-item"><a href="#/nguon"><span class="tick"></span><span class="nav-label">Nguồn và cách biên soạn</span></a></li></ul></div>';
+      '</ul></div>' +
+      '<div class="nav-group"><button class="nav-group-head" data-toggle="trainer">Dành cho giảng viên<span class="chev">▾</span></button><ul class="nav-list">' +
+      '<li class="nav-item"><a href="#/lich"><span class="tick"></span><span class="nav-label">Lịch 3 ngày · 6 buổi</span></a></li>' +
+      '<li class="nav-item"><a href="#/chieu"><span class="tick"></span><span class="nav-label">Bộ slide chiếu</span></a></li>' +
+      '<li class="nav-item"><a href="#/danh-gia"><span class="tick"></span><span class="nav-label">Kiểm tra đầu vào – đầu ra</span></a></li>' +
+      '<li class="nav-item"><a href="#/dap-an"><span class="tick"></span><span class="nav-label">Đáp án 69 câu</span></a></li>' +
+      '<li class="nav-item"><a href="#/mau-bieu"><span class="tick"></span><span class="nav-label">Mẫu biểu in</span></a></li>' +
+      '</ul></div>' +
+      '<div class="nav-group"><ul class="nav-list"><li class="nav-item"><a href="#/in"><span class="tick"></span><span class="nav-label">Bộ phiếu in ngoại tuyến</span></a></li><li class="nav-item"><a href="#/nguon"><span class="tick"></span><span class="nav-label">Nguồn và cách biên soạn</span></a></li></ul></div>';
     sideNav.innerHTML = html;
     sideNav.querySelectorAll("[data-toggle]").forEach((b) => b.addEventListener("click", () => {
       b.parentElement.classList.toggle("closed");
@@ -3320,6 +3557,14 @@ Quy ước tên: `mon_khoi_bai_phien-ban`. Không đặt tên học sinh trong t
       '<div class="track-grid">' + trackCards + "</div>" +
       '<div class="section-head"><div><h2>Phòng thực hành</h2><p>Sáu công cụ chạy trên máy, không gửi dữ liệu lên mạng.</p></div><a href="#/cong-cu">Mở tất cả →</a></div>' +
       '<div class="tool-strip">' + toolCards + "</div>" +
+      '<div class="section-head"><div><h2>Dành cho giảng viên dạy tập huấn</h2><p>Lịch buổi, slide chiếu, đề – đáp án và mẫu biểu in dùng ngay.</p></div><a href="#/lich">Mở lịch 6 buổi →</a></div>' +
+      '<div class="trainer-strip">' + [
+        ["#/lich", "LỊCH TẬP HUẤN", "03 ngày · 06 buổi", "Mục tiêu, thời gian và sản phẩm từng buổi; in A4 để dán phòng họp."],
+        ["#/chieu", "BỘ SLIDE CHIẾU", "6 bộ · " + TRAINER.slides.decks.reduce((n, d) => n + d.slides.length, 0) + " slide", "Chiếu toàn màn hình, in ngang A4; có ghi chú giảng viên từng slide."],
+        ["#/danh-gia", "ĐO TIẾN BỘ", ASSESS.questions.length + " câu · trước – sau", "Chấm ngay, lưu điểm đầu vào – đầu ra trên máy; in phiếu trắng và đáp án."],
+        ["#/dap-an", "ĐÁP ÁN", collectQuizzes().reduce((n, g) => n + g.qs.length, 0) + " câu · 17 bài", "Đáp án kèm giải thích cho toàn bộ phần tự kiểm tra; in để chấm nhanh."],
+        ["#/mau-bieu", "MẪU BIỂU", "7 mẫu in A4", "Danh sách học viên, biên bản, phản hồi, chứng nhận, thẻ đầu mối, checklist buổi."]
+      ].map((c) => '<a class="trainer-card" href="' + c[0] + '"><span class="kicker">' + esc(c[1]) + "</span><b>" + esc(c[2]) + "</b><span>" + esc(c[3]) + "</span></a>").join("") + "</div>" +
       '<div class="notice"><b>Lưu ý:</b> đây là bản thực hành rút gọn, giữ nguyên mã năng lực, quy trình và căn cứ của tài liệu gốc. Khi nộp hồ sơ chính thức, đối chiếu lại với 04 bộ tài liệu NAEM 2026 và văn bản pháp luật hiện hành.</div>' +
       '<p class="footer-note">Tiến độ đọc được lưu trên trình duyệt của máy này. Trang hoạt động ngoại tuyến sau lần tải đầu tiên.</p></div>';
     setActive("#/");
@@ -3450,16 +3695,348 @@ Quy ước tên: `mon_khoi_bai_phien-ban`. Không đặt tên học sinh trong t
     window.scrollTo(0, 0);
   }
 
+  /* ---------- Dữ liệu giảng viên ---------- */
+  function collectQuizzes() {
+    const groups = [];
+    for (const track of manifest.tracks) {
+      for (const lesson of track.lessons) {
+        const src = document.querySelector('.lesson-src[data-id="' + lesson.id + '"]');
+        if (!src) continue;
+        const qs = [];
+        const re = /:::quiz([\s\S]*?):::/g;
+        let m;
+        while ((m = re.exec(src.textContent))) qs.push.apply(qs, parseQuiz(m[1].split("\n")));
+        if (qs.length) groups.push({ track, lesson, qs });
+      }
+    }
+    return groups;
+  }
+
+  function printSheets(html, mode) {
+    const surface = document.getElementById("printSurface");
+    const cls = mode === "deck" ? "printing-deck" : "printing-tool";
+    surface.innerHTML = html;
+    document.body.classList.add(cls);
+    const done = () => {
+      document.body.classList.remove(cls);
+      surface.innerHTML = "";
+      window.removeEventListener("afterprint", done);
+    };
+    window.addEventListener("afterprint", done);
+    setTimeout(() => window.print(), 60);
+  }
+
+  function pageHead(title) {
+    return '<div class="lesson-head"><div class="breadcrumb"><a href="#/">Trang chủ</a> / Giảng viên</div><h1>' + esc(title) + '</h1><div class="lesson-meta"><span class="chip">Dành cho giảng viên</span><span class="chip amber">A4 · in được</span></div></div>';
+  }
+
+  /* ---------- Lịch tập huấn ---------- */
+  function renderSchedule() {
+    const s = TRAINER.schedule;
+    const days = s.days.map((day) => {
+      const sessions = day.sessions.map((se) => {
+        const blocks = se.blocks.map((b) => '<div class="sched-block"><span class="sched-time">' + esc(b.t) + '</span><div><b>' + inline(b.a) + '</b><em>' + esc(b.out) + '</em></div></div>').join("");
+        const lessons = (se.lessons || []).map((id) => lessonById[id] ? '<a class="chip-link" href="#/bai/' + id + '">' + esc(lessonById[id].title) + '</a>' : "").join("");
+        const tools = (se.tools || []).map((id) => { const t = manifest.tools.find((x) => x.id === id); return t ? '<a class="chip-link" href="#/cong-cu/' + id + '">' + esc(t.title) + '</a>' : ""; }).join("");
+        const links = lessons || tools ? '<div class="sched-links">' + (lessons ? '<span>Bài học</span>' + lessons : "") + (tools ? '<span>Công cụ</span>' + tools : "") + "</div>" : "";
+        return '<section class="sched-session"><div class="sched-head"><div><span class="kicker">' + esc(se.when) + " · " + esc(se.length) + '</span><h3>' + esc(se.label) + " — " + esc(se.title) + '</h3></div><a class="btn" href="#/chieu/' + se.deck + '">Chiếu slide</a></div>' +
+          '<p class="sched-goal"><b>Mục tiêu:</b> ' + inline(se.goal) + "</p>" +
+          '<div class="sched-blocks">' + blocks + "</div>" + links + "</section>";
+      }).join("");
+      return '<div class="sched-day"><div class="sched-day-head"><h2>' + esc(day.title) + '</h2><p>' + esc(day.subtitle) + "</p></div>" + sessions + "</div>";
+    }).join("");
+    main.innerHTML = '<div class="wrap">' + pageHead(s.title) +
+      '<p class="sched-note">' + inline(s.note) + "</p>" +
+      '<div class="print-actions"><button class="btn primary" id="schedPrint">In lịch A4</button><a class="btn" href="#/chieu">Bộ slide chiếu</a><a class="btn" href="#/mau-bieu">Mẫu biểu buổi học</a></div>' +
+      days + "</div>";
+    document.getElementById("schedPrint").onclick = () => {
+      const sheets = TRAINER.schedule.days.map((day) =>
+        '<section class="sheet"><div class="sheet-kicker">LỊCH TẬP HUẤN · NAEM 2026</div><h3>' + esc(day.title) + " — " + esc(day.subtitle) + "</h3>" +
+        day.sessions.map((se) => '<p style="margin:8px 0 4px"><strong>' + esc(se.label) + " · " + esc(se.when) + " · " + esc(se.length) + ":</strong> " + esc(se.title) + "</p>" +
+          '<table><thead><tr><th style="width:24%">Thời gian</th><th>Hoạt động</th><th style="width:28%">Sản phẩm</th></tr></thead><tbody>' +
+          se.blocks.map((b) => "<tr><td>" + esc(b.t) + "</td><td>" + esc(b.a) + "</td><td>" + esc(b.out) + "</td></tr>").join("") + "</tbody></table>").join("") +
+        "</section>").join("");
+      printSheets(sheets);
+    };
+    setActive("#/lich");
+    document.title = "Lịch tập huấn 03 ngày · 06 buổi";
+    window.scrollTo(0, 0);
+  }
+
+  /* ---------- Slide chiếu ---------- */
+  function renderDeckList() {
+    const cards = TRAINER.slides.decks.map((d) =>
+      '<a class="deck-card" href="#/chieu/' + d.id + '"><span class="kicker">' + esc(d.day) + " · " + esc(d.label) + '</span><h3>' + esc(d.title) + '</h3><p>' + esc(d.subtitle) + '</p><span class="meta">' + d.slides.length + " slide · in ngang A4</span></a>").join("");
+    main.innerHTML = '<div class="wrap">' + pageHead("Bộ slide chiếu · 6 buổi") +
+      '<p class="sched-note">Mở một bộ để chiếu toàn màn hình: phím ← → hoặc Space để chuyển slide, Esc để thoát. Nút “In slide” xuất toàn bộ bộ chiếu ra A4 nằm ngang, mỗi slide một trang.</p>' +
+      '<div class="deck-grid">' + cards + "</div></div>";
+    setActive("#/chieu");
+    document.title = "Bộ slide chiếu · NAEM 2026";
+    window.scrollTo(0, 0);
+  }
+
+  function renderDeck(id) {
+    const deck = decksById[id];
+    if (!deck) { renderDeckList(); return; }
+    let idx = 0;
+    document.body.classList.add("deck-mode");
+    main.innerHTML = '<div class="deck"><div class="deck-top"><span class="deck-tag">' + esc(deck.day) + " · " + esc(deck.label) + " · " + esc(deck.title) + '</span><span class="deck-count" id="deckCount"></span></div>' +
+      '<div class="deck-stage" id="deckStage"></div>' +
+      '<div class="deck-note" id="deckNote"></div>' +
+      '<div class="deck-controls"><button class="btn" id="deckPrev">← Trước</button><span class="deck-hint">← → hoặc Space · Esc thoát</span><button class="btn" id="deckNext">Sau →</button><button class="btn" id="deckPrint">In slide</button><a class="btn ghost" href="#/chieu">Danh sách</a></div></div>';
+    const stage = document.getElementById("deckStage");
+    const note = document.getElementById("deckNote");
+    const count = document.getElementById("deckCount");
+    const prev = document.getElementById("deckPrev");
+    const next = document.getElementById("deckNext");
+    function draw() {
+      const sl = deck.slides[idx];
+      stage.innerHTML = '<article class="slide' + (idx === 0 ? " cover" : "") + '"><span class="slide-kicker">' + esc(sl.k) + "</span><h2>" + esc(sl.t) + "</h2>" +
+        (sl.b && sl.b.length ? "<ul>" + sl.b.map((x) => "<li>" + inline(x) + "</li>").join("") + "</ul>" : "") + "</article>";
+      note.textContent = sl.n ? "Ghi chú giảng viên: " + sl.n : "";
+      count.textContent = (idx + 1) + " / " + deck.slides.length;
+      prev.disabled = idx === 0;
+      next.disabled = idx === deck.slides.length - 1;
+    }
+    function go(step) { const n = Math.max(0, Math.min(deck.slides.length - 1, idx + step)); if (n !== idx) { idx = n; draw(); } }
+    prev.onclick = () => go(-1);
+    next.onclick = () => go(1);
+    stage.onclick = () => go(1);
+    document.getElementById("deckPrint").onclick = () => {
+      printSheets(deck.slides.map((sl, i) =>
+        '<section class="print-slide"><div class="ps-head"><span>' + esc(deck.label) + " · " + esc(deck.day) + "</span><span>" + (i + 1) + "/" + deck.slides.length + "</span></div><h2>" + esc(sl.t) + "</h2>" +
+        (sl.b && sl.b.length ? "<ul>" + sl.b.map((x) => "<li>" + esc(x) + "</li>").join("") + "</ul>" : "") +
+        (sl.n ? '<p class="ps-note">Ghi chú giảng viên: ' + esc(sl.n) + "</p>" : "") + "</section>").join(""), "deck");
+    };
+    deckKeyHandler = (e) => {
+      if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") { e.preventDefault(); go(1); }
+      else if (e.key === "ArrowLeft" || e.key === "PageUp") { e.preventDefault(); go(-1); }
+      else if (e.key === "Escape") location.hash = "#/chieu";
+    };
+    document.addEventListener("keydown", deckKeyHandler);
+    draw();
+    document.title = deck.title + " · Slide chiếu";
+    window.scrollTo(0, 0);
+  }
+
+  /* ---------- Đáp án ---------- */
+  function renderAnswers() {
+    const groups = collectQuizzes();
+    const total = groups.reduce((n, g) => n + g.qs.length, 0);
+    let lastTrack = "";
+    const body = groups.map((g) => {
+      let head = "";
+      if (g.track.id !== lastTrack) { lastTrack = g.track.id; head = '<h2 class="ans-track-title">' + esc(g.track.title) + "</h2>"; }
+      return head + '<h3 class="ans-lesson">' + esc(g.lesson.title) + ' <span class="muted">(' + g.qs.length + " câu)</span></h3>" +
+        g.qs.map((q, i) => '<div class="ans"><p><b>' + (i + 1) + ".</b> " + inline(q.question) + '</p><p class="ans-correct">Đáp án: ' + inline(q.opts[q.correct]) + "</p>" + (q.explain ? '<p class="ans-explain">' + inline(q.explain) + "</p>" : "") + "</div>").join("");
+    }).join("");
+    const testKey = '<h2 class="ans-track-title">Đề kiểm tra đầu vào – đầu ra</h2>' + ASSESS.questions.map((q, i) =>
+      '<div class="ans"><p><b>' + (i + 1) + ".</b> " + inline(q.q) + '</p><p class="ans-correct">Đáp án ' + "ABC"[q.correct] + ". " + inline(q.opts[q.correct]) + '</p><p class="ans-explain">' + inline(q.explain) + "</p></div>").join("");
+    main.innerHTML = '<div class="wrap">' + pageHead("Đáp án toàn bộ bài tự kiểm tra") +
+      '<p class="sched-note">' + total + " câu trong 17 bài, kèm " + ASSESS.questions.length + " câu của đề kiểm tra đầu vào – đầu ra. Dùng để chấm nhanh hoặc đối chiếu sau khi học viên tự làm.</p>" +
+      '<div class="print-actions"><button class="btn primary" id="ansPrint">In đáp án A4</button><a class="btn" href="#/danh-gia">Làm đề ' + ASSESS.questions.length + ' câu</a></div>' +
+      '<div class="ans-body">' + body + testKey + "</div></div>";
+    document.getElementById("ansPrint").onclick = () => {
+      const sheets = manifest.tracks.map((track) => {
+        const parts = groups.filter((g) => g.track.id === track.id).map((g) =>
+          '<h4 style="margin:10px 0 4px">' + esc(g.lesson.title) + "</h4>" +
+          g.qs.map((q, i) => '<p style="margin:4px 0"><b>' + (i + 1) + ".</b> " + esc(q.question) + '<br><span style="color:#0d7a5f">Đáp án: ' + esc(q.opts[q.correct]) + "</span></p>").join("")).join("");
+        return '<section class="sheet"><div class="sheet-kicker">ĐÁP ÁN · LƯU HÀNH NỘI BỘ</div><h3>' + esc(track.title) + "</h3>" + parts + "</section>";
+      }).join("");
+      printSheets(sheets + '<section class="sheet"><div class="sheet-kicker">ĐÁP ÁN · ĐỀ ' + ASSESS.questions.length + ' CÂU</div><h3>Kiểm tra đầu vào – đầu ra</h3>' +
+        ASSESS.questions.map((q, i) => '<p style="margin:4px 0"><b>' + (i + 1) + ".</b> " + esc(q.q) + '<br><span style="color:#0d7a5f">Đáp án ' + "ABC"[q.correct] + ". " + esc(q.opts[q.correct]) + "</span></p>").join("") + "</section>");
+    };
+    setActive("#/dap-an");
+    document.title = "Đáp án · Sổ tay số Nghệ An";
+    window.scrollTo(0, 0);
+  }
+
+  /* ---------- Kiểm tra đầu vào – đầu ra ---------- */
+  function testSheet(withKey) {
+    const T = ASSESS;
+    return '<section class="sheet"><div class="sheet-kicker">KIỂM TRA ĐẦU VÀO – ĐẦU RA · NAEM 2026</div><h3>' + esc(T.title) + '</h3>' +
+      '<p>Họ và tên: ................................................ Đơn vị: ................................ Lần làm: ☐ Đầu vào ☐ Đầu ra</p>' +
+      T.questions.map((q, i) => '<p style="margin:6px 0 2px"><b>' + (i + 1) + ".</b> " + esc(q.q) + "</p>" +
+        (withKey ? '<p style="margin:0 0 6px;color:#0d7a5f">Đáp án ' + "ABC"[q.correct] + ". " + esc(q.opts[q.correct]) + "</p>" :
+          '<p style="margin:0 0 6px">☐ A. ' + esc(q.opts[0]) + "&nbsp;&nbsp; ☐ B. " + esc(q.opts[1]) + "&nbsp;&nbsp; ☐ C. " + esc(q.opts[2]) + "</p>")).join("") +
+      '<p style="margin-top:10px">Điểm: ...... / ' + T.questions.length + "</p></section>";
+  }
+
+  function renderTest() {
+    const T = ASSESS;
+    const RES_KEY = "naem.test.v1";
+    const saved = read(RES_KEY, {});
+    const mode = saved.post ? "luyen" : saved.pre ? "post" : "pre";
+    main.innerHTML = '<div class="wrap">' + pageHead(T.title) +
+      '<p class="sched-note">' + inline(T.intro) + "</p>" +
+      '<div class="test-bar"><label>Lần làm <select id="testMode">' +
+      '<option value="pre"' + (mode === "pre" ? " selected" : "") + ">Đầu vào (buổi 1)</option>" +
+      '<option value="post"' + (mode === "post" ? " selected" : "") + ">Đầu ra (buổi 6)</option>" +
+      '<option value="luyen"' + (mode === "luyen" ? " selected" : "") + ">Luyện tập</option></select></label>" +
+      '<span class="chip" id="testScore">0 / ' + T.questions.length + '</span><span class="chip gray">Chỉ lưu trên máy</span></div>' +
+      '<div id="testSaved"></div><div id="testList" class="test-list">' +
+      T.questions.map((q, qi) => '<div class="tq" data-correct="' + q.correct + '"><div class="tq-title"><span>' + (qi + 1) + ".</span> " + inline(q.q) + '</div><div class="tq-opts">' +
+        q.opts.map((o, oi) => '<button class="tq-opt" data-o="' + oi + '">' + "ABC"[oi] + ". " + inline(o) + "</button>").join("") +
+        '</div><div class="tq-explain">' + inline(q.explain) + "</div></div>").join("") + "</div>" +
+      '<div id="testResult"></div>' +
+      '<div class="print-actions"><button class="btn" id="testBlankPrint">In phiếu trắng A4</button><button class="btn" id="testKeyPrint">In đáp án</button><a class="btn" href="#/dap-an">Toàn bộ đáp án</a></div>' +
+      '<p class="footer-note">Điểm không gửi đi đâu. Dùng cùng một đề cho buổi 1 và buổi 6 để so sánh tiến bộ.</p></div>';
+
+    const scoreEl = document.getElementById("testScore");
+    const result = document.getElementById("testResult");
+    const list = document.getElementById("testList");
+
+    function savedNote() {
+      const s = read(RES_KEY, {});
+      const bits = [];
+      if (s.pre) bits.push("Đầu vào: " + s.pre.score + "/" + T.questions.length + " (" + s.pre.date + ")");
+      if (s.post) bits.push("Đầu ra: " + s.post.score + "/" + T.questions.length + " (" + s.post.date + ")");
+      const diff = s.pre && s.post ? s.post.score - s.pre.score : null;
+      document.getElementById("testSaved").innerHTML = bits.length ? '<p class="saved-line">' + esc(bits.join(" · ")) + (diff == null ? "" : " · Tiến bộ " + (diff >= 0 ? "+" : "") + diff + " câu") + "</p>" : "";
+    }
+    savedNote();
+
+    list.addEventListener("click", (e) => {
+      const btn = e.target.closest(".tq-opt");
+      if (!btn) return;
+      const q = btn.closest(".tq");
+      if (q.classList.contains("answered")) return;
+      const correct = Number(q.dataset.correct);
+      const chosen = Number(btn.dataset.o);
+      q.classList.add("answered");
+      q.querySelectorAll(".tq-opt").forEach((b) => {
+        b.disabled = true;
+        if (Number(b.dataset.o) === correct) b.classList.add("correct");
+      });
+      if (chosen !== correct) btn.classList.add("wrong");
+      const answered = list.querySelectorAll(".tq.answered").length;
+      const right = Array.from(list.querySelectorAll(".tq.answered")).filter((x) => x.querySelector(".tq-opt.correct") && !x.querySelector(".tq-opt.wrong")).length;
+      scoreEl.textContent = right + " / " + T.questions.length;
+      if (answered === T.questions.length) {
+        const band = T.bands.find((b) => right <= b.max) || T.bands[T.bands.length - 1];
+        const modeSel = document.getElementById("testMode").value;
+        if (modeSel !== "luyen") {
+          const s = read(RES_KEY, {});
+          s[modeSel] = { score: right, date: new Date().toISOString().slice(0, 10) };
+          write(RES_KEY, s);
+          savedNote();
+        }
+        result.innerHTML = '<div class="callout do"><span class="callout-title">Kết quả: ' + right + "/" + T.questions.length + " · " + esc(band.label) + "</span><p>" + inline(band.advice) + '</p><p><a href="#/bai/c1-can-cu">Vào Nền tảng chung</a> · <a href="#/lich">Xem lịch 6 buổi</a></p><button class="btn" id="testRetry">Làm lại</button></div>';
+        document.getElementById("testRetry").onclick = () => renderTest();
+      }
+    });
+    document.getElementById("testBlankPrint").onclick = () => printSheets(testSheet(false));
+    document.getElementById("testKeyPrint").onclick = () => printSheets(testSheet(true));
+    setActive("#/danh-gia");
+    document.title = "Kiểm tra đầu vào – đầu ra · NAEM 2026";
+    window.scrollTo(0, 0);
+  }
+
+  /* ---------- Mẫu biểu ---------- */
+  const FORMS = [
+    {
+      id: "danh-sach", kicker: "MẪU 01 · LỚP TẬP HUẤN", title: "Danh sách học viên", desc: "20 dòng, có đơn vị, môn, nhóm A/B/C và chữ ký.",
+      html: () => '<section class="sheet"><div class="sheet-kicker">MẪU 01 · DANH SÁCH HỌC VIÊN</div><h3>Danh sách học viên lớp tập huấn</h3>' +
+        '<p>Lớp: ........................................ Đơn vị: ........................................ Thời gian: ........................</p>' +
+        '<table><thead><tr><th style="width:6%">STT</th><th>Họ và tên</th><th>Đơn vị</th><th>Môn</th><th style="width:9%">Nhóm</th><th style="width:12%">Ký</th></tr></thead><tbody>' +
+        Array.from({ length: 20 }, (_, i) => '<tr><td>' + (i + 1) + '</td><td style="height:26px"></td><td></td><td></td><td></td><td></td></tr>').join("") +
+        "</tbody></table></section>"
+    },
+    {
+      id: "bien-ban", kicker: "MẪU 02 · SINH HOẠT TỔ", title: "Biên bản buổi tập huấn", desc: "Thành phần, nội dung, kết luận, chữ ký.",
+      html: () => '<section class="sheet"><div class="sheet-kicker">MẪU 02 · BIÊN BẢN</div><h3>Biên bản sinh hoạt chuyên môn / buổi tập huấn</h3>' +
+        '<p>Thời gian: ................................ Địa điểm: ................................</p>' +
+        '<p>Thành phần: ..............................................................................................................</p>' +
+        '<p>Chủ trì: ................................ Thư ký: ................................</p>' +
+        '<table><thead><tr><th style="width:24%">Nội dung</th><th style="width:24%">Người trình bày</th><th>Ý kiến trao đổi</th></tr></thead><tbody>' +
+        [1, 2, 3, 4, 5].map((n) => '<tr><td style="height:44px">' + n + '</td><td></td><td></td></tr>').join("") + "</tbody></table>" +
+        '<p><strong>Kết luận:</strong> ................................................................................................................</p>' +
+        '<p><strong>Phân công sau buổi:</strong> ................................................................................................</p>' +
+        '<div class="sign-row"><div>Chủ trì<br><em>(Ký, ghi rõ họ tên)</em></div><div>Thư ký<br><em>(Ký, ghi rõ họ tên)</em></div></div></section>'
+    },
+    {
+      id: "phan-hoi", kicker: "MẪU 03 · CUỐI KHÓA", title: "Phiếu phản hồi học viên", desc: "Tám tiêu chí thang 1–5 và ba câu mở.",
+      html: () => '<section class="sheet"><div class="sheet-kicker">MẪU 03 · PHIẾU PHẢN HỒI</div><h3>Phiếu phản hồi cuối khóa tập huấn</h3>' +
+        '<p>Không bắt buộc ghi tên. Đánh dấu vào ô phù hợp: 1 = rất thấp, 5 = rất cao.</p>' +
+        '<table><thead><tr><th>Tiêu chí</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead><tbody>' +
+        ["Nội dung sát thực tiễn nhà trường", "Thời lượng các hoạt động hợp lý", "Giảng viên hướng dẫn rõ ràng", "Tài liệu dùng được ngay sau khóa", "Công cụ và phiếu in dễ sử dụng", "Tổ chức lớp và hậu cần", "Mức sẵn sàng áp dụng vào tuần tới", "Khóa học xứng đáng với thời gian bỏ ra"]
+          .map((t) => "<tr><td>" + esc(t) + "</td>" + "<td>☐</td>".repeat(5) + "</tr>").join("") + "</tbody></table>" +
+        '<p><strong>Điều giữ lại:</strong> ............................................................................................................</p>' +
+        '<p><strong>Điều nên bỏ hoặc sửa:</strong> ..................................................................................................</p>' +
+        '<p><strong>Cần thêm cho 30 ngày tới:</strong> ..............................................................................................</p></section>'
+    },
+    {
+      id: "chung-nhan", kicker: "MẪU 04 · CHỨNG NHẬN", title: "Chứng nhận hoàn thành", desc: "Bố cục trang trọng, in màu hoặc đen trắng.",
+      html: () => '<section class="sheet cert"><div class="sheet-kicker" style="text-align:center">MẪU 04 · CHỨNG NHẬN</div>' +
+        '<div class="cert-body"><p style="text-align:center;letter-spacing:2px;font-weight:800;margin-bottom:4px">CHỨNG NHẬN</p>' +
+        '<p style="text-align:center;margin-top:0">Hoàn thành chương trình bồi dưỡng năng lực số và sư phạm số</p>' +
+        '<p style="text-align:center;font-size:15px">Chứng nhận ông/bà:</p><p style="text-align:center;font-size:20px;font-weight:800">....................................................</p>' +
+        '<p style="text-align:center">Đơn vị: ............................................................</p>' +
+        '<p style="text-align:center">Đã hoàn thành 03 ngày · 06 buổi tập huấn NAEM 2026, gồm: căn cứ pháp lý và bản đồ năng lực; an toàn số và AI có trách nhiệm; mô hình 4C; kế hoạch tổ chuyên môn 4 tuần.</p>' +
+        '<p style="text-align:center">Nghệ An, ngày ...... tháng ...... năm 2026</p>' +
+        '<div class="sign-row"><div>Trưởng ban tổ chức<br><em>(Ký, đóng dấu)</em></div><div>Số: ..................</div></div></div></section>'
+    },
+    {
+      id: "dau-moi", kicker: "MẪU 05 · AN TOÀN SỐ", title: "Thẻ đầu mối an toàn số", desc: "Dán tổ chuyên môn: 111, 113 và ba bước xử lý.",
+      html: () => '<section class="sheet"><div class="sheet-kicker">MẪU 05 · THẺ ĐẦU MỐI</div><h3>Đầu mối an toàn số của trường</h3>' +
+        '<p>Hiệu phó phụ trách: ................................ SĐT: ................................</p>' +
+        '<p>Tổ tư vấn tâm lý: ................................ SĐT: ................................</p>' +
+        '<p>Đầu mối Phòng/Sở GD&amp;ĐT: ................................ SĐT: ................................</p>' +
+        '<div class="hotline-row"><div><b>111</b><span>Bảo vệ trẻ em · miễn phí 24/7</span></div><div><b>113</b><span>Công an khẩn cấp</span></div></div>' +
+        '<p><strong>Ba bước khi học sinh báo sự cố:</strong></p><ol><li>Dừng lại, lắng nghe, không phán xét.</li><li>Lưu bằng chứng: ảnh chụp rõ nội dung, tài khoản, thời gian.</li><li>Báo ngay người lớn tin cậy và đầu mối an toàn số; Mức 3 gọi 111 hoặc 113.</li></ol>' +
+        '<p class="muted">Không hứa giữ bí mật tuyệt đối; không yêu cầu học sinh xóa bằng chứng.</p></section>'
+    },
+    {
+      id: "dieu-hanh", kicker: "MẪU 06 · ĐIỀU HÀNH", title: "Checklist điều hành buổi", desc: "Trước – trong – sau buổi, dành cho giảng viên.",
+      html: () => '<section class="sheet"><div class="sheet-kicker">MẪU 06 · CHECKLIST ĐIỀU HÀNH</div><h3>Checklist điều hành một buổi tập huấn</h3>' +
+        '<p><strong>Trước buổi</strong></p><ul class="plain-check">' +
+        ["Máy chiếu, âm thanh, mạng dự phòng", "Slide và bản in phiếu thực hành đủ số nhóm", "Danh sách học viên và nhóm A/B/C", "Mẫu biên bản, phiếu phản hồi", "Thẻ đầu mối an toàn số đã điền số"]
+          .map((t) => "<li>☐ " + esc(t) + "</li>").join("") + "</ul>" +
+        '<p><strong>Trong buổi</strong></p><ul class="plain-check">' +
+        ["Điểm danh, chia nhóm theo khóa", "Nêu mục tiêu và sản phẩm của buổi", "Giữ hoạt động thực hành tối thiểu 40% thời lượng", "Ghi lại ba câu hỏi chưa trả lời", "Chốt sản phẩm và hạn nộp"]
+          .map((t) => "<li>☐ " + esc(t) + "</li>").join("") + "</ul>" +
+        '<p><strong>Sau buổi</strong></p><ul class="plain-check">' +
+        ["Thu sản phẩm theo danh sách", "Ghi biên bản và ảnh minh chứng", "Trả lời các câu hỏi còn treo trong 48 giờ", "Cập nhật thư mục minh chứng của tổ"]
+          .map((t) => "<li>☐ " + esc(t) + "</li>").join("") + "</ul></section>"
+    },
+    {
+      id: "de-12", kicker: "MẪU 07 · KIỂM TRA", title: "Phiếu kiểm tra 12 câu", desc: "Bản trắng để phát tay; đáp án in riêng.",
+      html: () => testSheet(false)
+    }
+  ];
+
+  function renderForms() {
+    const cards = FORMS.map((f) => '<div class="form-card"><span class="kicker">' + esc(f.kicker) + '</span><h3>' + esc(f.title) + '</h3><p>' + esc(f.desc) + '</p><button class="btn" data-form="' + f.id + '">In mẫu</button></div>').join("");
+    main.innerHTML = '<div class="wrap">' + pageHead("Mẫu biểu in cho lớp tập huấn") +
+      '<p class="sched-note">Bảy mẫu A4 dùng ngay: in trắng để điền tay hoặc phát cho học viên. Mẫu chứng nhận và thẻ đầu mối nên in màu nếu có điều kiện.</p>' +
+      '<div class="print-actions"><a class="btn" href="#/in">Bộ phiếu cho học viên</a><a class="btn" href="#/dap-an">Đáp án</a></div>' +
+      '<div class="form-grid-cards">' + cards + "</div></div>";
+    main.querySelectorAll("[data-form]").forEach((b) => {
+      b.onclick = () => { const f = FORMS.find((x) => x.id === b.dataset.form); printSheets(f.html()); };
+    });
+    setActive("#/mau-bieu");
+    document.title = "Mẫu biểu in · NAEM 2026";
+    window.scrollTo(0, 0);
+  }
+
   /* ---------- Khởi động ---------- */
   function route() {
     const hash = location.hash || "#/";
     closeNav();
+    if (deckKeyHandler) { document.removeEventListener("keydown", deckKeyHandler); deckKeyHandler = null; }
+    document.body.classList.remove("deck-mode");
     if (hash.startsWith("#/bai/")) renderLesson(hash.slice(6));
     else if (hash.startsWith("#/cong-cu")) renderTools(hash.split("/")[2] || "");
     else if (hash === "#/in") renderPrintKit();
+    else if (hash === "#/lich") renderSchedule();
+    else if (hash === "#/chieu") renderDeckList();
+    else if (hash.startsWith("#/chieu/")) renderDeck(hash.slice(8));
+    else if (hash === "#/dap-an") renderAnswers();
+    else if (hash === "#/danh-gia") renderTest();
+    else if (hash === "#/mau-bieu") renderForms();
     else if (hash === "#/nguon") renderSource();
     else renderHome();
-    if (!hash.startsWith("#/bai/") && !hash.startsWith("#/cong-cu")) window.scrollTo(0, 0);
+    if (!hash.startsWith("#/bai/") && !hash.startsWith("#/cong-cu") && !hash.startsWith("#/chieu/")) window.scrollTo(0, 0);
   }
 
   buildSidebar();
